@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from '../../../public/wired-flat-448-paws-animal-hover-pinch.png'
+import Logo from '../Logo/Logo';
+
 const Fotter = () => {
     return (
         <footer className="bg-gray-100">
   <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
     <div className="flex justify-center ">
-        <p>MeowVerse</p>
-     <img src={logo} className='w-12 h-12 rounded-full' alt="" />
+       <Logo/>
     </div>
 
     <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
