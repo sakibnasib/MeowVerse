@@ -12,7 +12,7 @@ const catImages = [
 
 const HeroSection = () => {
   return (
-    <section className="h-[90vh] py-16 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-10">
+    <section className="h-[90vh] py-16 bg-pink-50 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-10">
       
       {/* Text Section */}
       <div className="md:w-2/4 text-center md:text-left">
@@ -25,9 +25,6 @@ const HeroSection = () => {
         <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <button className="bg-pink-600 text-white px-6 py-3 rounded-full shadow hover:bg-pink-700 transition">
             Explore Cats
-          </button>
-          <button className="bg-white border-2 border-pink-500 text-pink-600 px-6 py-3 rounded-full hover:bg-pink-100 transition">
-            Create Profile
           </button>
         </div>
       </div>

@@ -127,7 +127,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="bg-rose-50 mt-10 py-16 px-6 md:px-20">
+    <section className="bg-rose-50 w-full mb-10 rounded-2xl mt-10 py-16 px-6 md:px-20">
       <h2 className="text-4xl font-bold text-center text-pink-600 mb-12">
         🐾 Cat Parent Reviews
       </h2>

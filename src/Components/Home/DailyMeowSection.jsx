@@ -5,21 +5,21 @@ const blogPosts = [
   {
     id: 1,
     title: "5 Ways to Keep Your Cat Happy Indoors",
-    image: "https://placekitten.com/400/250",
+    image: "https://i.ibb.co/G3kmngqT/download-14-yugeyiuw.jpg",
     date: "July 25, 2025",
     description: "Enrichment tips, play ideas, and cozy setups to keep your kitty purring all day long.",
   },
   {
     id: 2,
     title: "Why Do Cats Knock Things Over?",
-    image: "https://placekitten.com/401/250",
+    image: "https://i.ibb.co/C3nbz5qL/download-14-67.jpg",
     date: "July 22, 2025",
     description: "Science meets sass: a funny (and real) look at feline behavior.",
   },
   {
     id: 3,
     title: "Understanding Cat Body Language",
-    image: "https://placekitten.com/402/250",
+    image: "https://i.ibb.co/N6ztL1fH/images-2-345678.jpg",
     date: "July 20, 2025",
     description: "From tail flicks to ear twitches — decode your cat's mysterious moves.",
   },
@@ -29,7 +29,7 @@ const meowFact = "😺 Did you know? Cats can make over 100 different vocal soun
 
 const DailyMeowSection = () => {
   return (
-    <section className="bg-white py-16 px-6 md:px-20 mt-10">
+    <section className="bg-gradient-to-r from-pink-50 to-rose-100 w-full rounded-2xl py-16 px-6 md:px-20 mt-10">
       {/* Section Title */}
       <h2 className="text-4xl font-bold text-center text-pink-600 mb-6">
         📰 Daily Meow
@@ -59,9 +59,9 @@ const DailyMeowSection = () => {
                 {post.title}
               </h3>
               <p className="text-gray-600 text-sm mb-4">{post.description}</p>
-              <button className="text-pink-600 font-semibold hover:underline">
+              {/* <button className="text-pink-600 font-semibold hover:underline">
                 Read More →
-              </button>
+              </button> */}
             </div>
           </div>
         ))}

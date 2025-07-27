@@ -13,7 +13,7 @@ const images = [
 const CatGallery = () => {
 
   return (
-    <section className="bg-white py-16 px-6 md:px-20">
+    <section className="bg-rose-50 w-full mt-10 rounded-2xl py-16 px-6 md:px-20">
       <h2 className="text-4xl font-bold text-center text-pink-600 mb-8">📸 Cat Gallery</h2>
 
       <div className="flex flex-wrap justify-center gap-3 mb-10">

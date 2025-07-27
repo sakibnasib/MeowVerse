@@ -9,10 +9,13 @@ const Home = () => {
     return (
         <div>
            <HeroSection/>
-           <DailyMeowSection/>
+           <div className="w-11/12 mx-auto">
+            <DailyMeowSection/>
            <CatGallery/>
            <CatCareTipsSection/>
            <TestimonialsSection/>
+           </div>
+          
         </div>
     );
 };

@@ -36,7 +36,7 @@ const tips = [
 
 const CatCareTipsSection = () => {
   return (
-    <section className="mt-10 bg-gradient-to-r from-pink-50 to-rose-100 py-16 px-6 md:px-20">
+    <section className="mt-10 rounded-2xl bg-gradient-to-r from-pink-50 to-rose-100 w-full py-16 px-6 md:px-20">
       <h2 className="text-4xl font-bold text-center text-pink-600 mb-12">
         🐾 Cat Care Tips & Resources
       </h2>
