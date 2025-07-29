@@ -1,0 +1,93 @@
+/* Container */
+.sellerform-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #e8dbe2;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Title & Subtitle */
+.sellerform-title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+}
+
+.sellerform-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #7f8c8d;
+}
+
+/* Form Layout */
+.sellerform-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+/* Input Group */
+.sellerform-input-group label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: #34495e;
+  display: block;
+}
+
+/* Inputs */
+.sellerform-input {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  background-color: #fdfdfd;
+}
+
+.sellerform-input:focus {
+  border-color: #c10d6a;
+  box-shadow: 0 0 0 3px rgba(193, 13, 106, 0.1);
+  outline: none;
+}
+
+/* Button */
+.sellerform-btn {
+  background-color: #c10d6a;
+  color: #fff;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.sellerform-btn:hover {
+  background-color: #a60b5c;
+}
+
+/* Error Message */
+.sellerform-error {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+/* Responsive Styles */
+@media (min-width: 768px) {
+  .sellerform-form {
+    grid-template-columns: 1fr 1fr; /* Two columns */
+  }
+
+  /* Make button full width on 2 cols */
+  .sellerform-btn {
+    grid-column: span 2;
+  }
+}

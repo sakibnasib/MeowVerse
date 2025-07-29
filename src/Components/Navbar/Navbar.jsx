@@ -2,11 +2,18 @@
 import React from "react";
 import Logo from "../Logo/Logo";
 import { Link, NavLink } from "react-router";
+import useAuth from "../../hook/useAuth";
+import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
+import Loaer from "../Loaer/Loaer";
+
 const Navbar = () => {
+  const {user,loading}=useAuth()
     const menu=<>
     <li><NavLink to=''>Home</NavLink></li>
      <li><NavLink to='/about'>About</NavLink></li>
+     <li><NavLink to='/blogPage'>Blog</NavLink></li>
     </>
+    if(loading) return <Loaer/>
     return (
        <div className="navbar bg-rose-100 shadow-sm">
   <div className="navbar-start">
@@ -28,8 +35,11 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
+    {user ? <ProfileDropdown/> :<>
     <Link to='/auth/login' className="">Login</Link>
     <Link to='/auth/register' className="ml-2">Register</Link>
+    </>}
+    
   </div>
 </div>
     );

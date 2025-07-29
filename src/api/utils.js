@@ -11,9 +11,7 @@ export const imageUpload=async imageData =>{
   return data?.data?.display_url
 };
 
-
-// save or update user in db
 export const saveUserDB= async user =>{
-  const {data}=await axios.post(`tft`,user)
+  const {data}=await axios.post(`http://localhost:3000/user`,user)
   return data;
 }
