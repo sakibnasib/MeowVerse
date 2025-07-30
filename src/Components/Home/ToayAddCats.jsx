@@ -3,6 +3,7 @@ import React from 'react';
 import CatCard from '../CatCard/CatCard';
 import Loaer from '../Loaer/Loaer';
 import axios from 'axios';
+import { Link } from 'react-router';
 
 const ToayAddCats = () => {
     const {data,isLoading}=useQuery({
@@ -25,6 +26,9 @@ if(isLoading) return <Loaer/>
                     <CatCard key={cat._id} cat={cat} />
                 ))}
             </div>
+           <div className="flex justify-center items-center">
+             <Link to='/allCats' className="mt-5 bg-pink-500 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-full transition">View All</Link>
+           </div>
         </div>
     );
 };

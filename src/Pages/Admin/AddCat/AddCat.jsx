@@ -44,7 +44,7 @@ const {data:sellerdata=[],isLoading} = useQuery({
     return data
   }
 })
- console.log(sellerdata,isLoading);
+ console.log(sellerdata);
 const addMutation=useMutation({
   mutationFn:async(formData)=>{
      const res = await axios.post('http://localhost:3000/cats', formData)
@@ -119,18 +119,18 @@ const addMutation=useMutation({
             <div className="sm:col-span-2">
               <label className="block mb-2 font-medium text-gray-600">Phone Number</label>
               <input
-                {...register('sellerPhone')}
-                placeholder={sellerdata?.phone || 'Enter your phone number'}
-                readOnly
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:outline-none"
-              />
+  {...register('sellerPhone')}
+  value={sellerdata?.phone || ''}
+  readOnly
+  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:outline-none"
+/>
             </div>
              <div className="sm:col-span-2">
               <label className="block mb-2 font-medium text-gray-600">Address</label>
               <input
                 {...register('sellerAddress')}
-                placeholder={`${sellerdata?.division}, ${sellerdata?.district || ''}`}
-                readOnly
+  value={`${sellerdata?.division || ''},${sellerdata?.district || ''}`}
+  readOnly
                 // value={sellerdata?.address || ''}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:outline-none"
               />

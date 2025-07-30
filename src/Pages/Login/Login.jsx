@@ -66,8 +66,8 @@ navigate(from, { replace: true })
   }
 
     return (
-       <div className='flex justify-center md:mt-5 md:mb-5  items-center min-h-screen'>
-      <div className='flex flex-col max-w-md p-6 rounded-3xl sm:p-10 bg-gradient-to-r from-pink-50 to-rose-100   text-gray-900'>
+       <div className='flex justify-center md:mt-5 md:mb-5  items-center  pb-10'>
+      <div className='flex flex-col max-w-md p-6 rounded-3xl sm:p-10 bg-white/30   text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl text-pink-600 font-bold'>Log In</h1>
           <p className='text-sm text-pink-600'>

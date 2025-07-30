@@ -26,7 +26,7 @@ const UserMenu = () => {
           🛍️ Become a Seller
         </NavLink>
         <NavLink
-          to="/dashboard/orders"
+          to="/dashboard/addCatFoodForm"
           className={({ isActive }) =>
             `${linkClass} ${isActive ? activeClass : ''}`
           }

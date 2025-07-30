@@ -12,6 +12,10 @@ import DashboardLayout from "../layouts/DasboardLayout";
 import AddCatForm from "../Pages/Admin/AddCat/AddCat";
 import Sellerform from "../Pages/SellerForm/Sellerform";
 import BlogPage from "../Pages/BlogPage/BlogPage";
+import CatDetails from "../Components/CatDetails/CatDetails";
+import AllCats from "../Pages/AllCats/AllCats";
+import AddCatFoodForm from "../Pages/Seller/AddCatFoodForm/AddCatFoodForm";
+import FoodDetails from "../Components/FoodDetails/FoodDetails";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +25,10 @@ const router = createBrowserRouter([
    children:[
     {index:true, Component:Home},
     {path:'about',Component:AboutPage},
-    {path:'/blogPage',Component: BlogPage}
+    {path:'blogPage',Component: BlogPage},
+    {path:'cats/:id', Component: CatDetails},
+    {path:'allCats',Component:AllCats},
+    {path:'catfood/:id', Component:FoodDetails}
    ]
   },
   {path:'/auth',Component: AuthLayout,
@@ -33,7 +40,8 @@ const router = createBrowserRouter([
   {path:'/dashboard', Component:DashboardLayout,
     children:[
       {path: 'AddCatForm',Component:AddCatForm},
-      {path:'Sellerform',Component:Sellerform}
+      {path:'Sellerform',Component:Sellerform},
+      {path:'addCatFoodForm',Component: AddCatFoodForm}
     ]
    }
 ]);

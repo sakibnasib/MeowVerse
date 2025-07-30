@@ -9,13 +9,31 @@ import Loaer from "../Loaer/Loaer";
 const Navbar = () => {
   const {user,loading}=useAuth()
     const menu=<>
-    <li><NavLink to=''>Home</NavLink></li>
-     <li><NavLink to='/about'>About</NavLink></li>
-     <li><NavLink to='/blogPage'>Blog</NavLink></li>
+    <li><NavLink  className={({ isActive }) => 
+            `px-4 py-2 rounded-lg transition-all duration-300 hover:bg-pink-100 hover:text-pink-700 ${
+              isActive ? 'bg-pink-100 text-pink-700 font-semibold' : 'text-gray-700'
+            }`
+          } to=''>Home</NavLink></li>
+     <li><NavLink  className={({ isActive }) => 
+            `px-4 py-2 rounded-lg transition-all duration-300 hover:bg-pink-100 hover:text-pink-700 ${
+              isActive ? 'bg-pink-100 text-pink-700 font-semibold' : 'text-gray-700'
+            }`
+          } to='/allCats'>All Cats</NavLink></li>
+     <li><NavLink  className={({ isActive }) => 
+            `px-4 py-2 rounded-lg transition-all duration-300 hover:bg-pink-100 hover:text-pink-700 ${
+              isActive ? 'bg-pink-100 text-pink-700 font-semibold' : 'text-gray-700'
+            }`
+          } to='/about'>About</NavLink></li>
+     <li><NavLink  className={({ isActive }) => 
+            `px-4 py-2 rounded-lg transition-all duration-300 hover:bg-pink-100 hover:text-pink-700 ${
+              isActive ? 'bg-pink-100 text-pink-700 font-semibold' : 'text-gray-700'
+            }`
+          } to='/blogPage'>Blog</NavLink></li>
+     
     </>
     if(loading) return <Loaer/>
     return (
-       <div className="navbar bg-rose-100 shadow-sm">
+       <div className="navbar sticky top-0  z-50 bg-gradient-to-br from-pink-50 via-white to-purple-50 backdrop-blur-md ">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -27,7 +45,7 @@ const Navbar = () => {
        { menu}
       </ul>
     </div>
-    <a className=" text-xl"><Logo/></a>
+    <Logo/>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -46,3 +64,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
