@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Link } from "react-router";
 
 const catImages = [
   "https://i.ibb.co/v6ZYpVQT/closeup-shot-one-ginger-cat-hugging-licking-other-isolated-white-wall.jpg",
@@ -32,18 +33,18 @@ const HeroSection = () => {
               
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                <button 
+                <Link to='/allCats'
                   className="bg-pink-600 hover:bg-pink-700 text-white px-6 sm:px-8 py-3 rounded-full font-semibold text-base sm:text-lg transition-colors duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2"
                   aria-label="Explore available cats for adoption"
                 >
                   Explore Cats
-                </button>
-                <button 
+                </Link>
+                <Link to='/allfoods' 
                   className="bg-purple-600 hover:bg-purple-700 text-white px-6 sm:px-8 py-3 rounded-full font-semibold text-base sm:text-lg transition-colors duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2"
                   aria-label="Browse cat food products"
                 >
                   Browse Cat Food
-                </button>
+                </Link>
               </div>
 
               {/* Quick Stats */}

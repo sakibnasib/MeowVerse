@@ -19,6 +19,11 @@ const Navbar = () => {
               isActive ? 'bg-pink-100 text-pink-700 font-semibold' : 'text-gray-700'
             }`
           } to='/allCats'>All Cats</NavLink></li>
+          <li><NavLink  to='/allfoods'  className={({ isActive }) => 
+            `px-4 py-2 rounded-lg transition-all duration-300 hover:bg-pink-100 hover:text-pink-700 ${
+              isActive ? 'bg-pink-100 text-pink-700 font-semibold' : 'text-gray-700'
+            }`
+          }>All Foods</NavLink></li>
      <li><NavLink  className={({ isActive }) => 
             `px-4 py-2 rounded-lg transition-all duration-300 hover:bg-pink-100 hover:text-pink-700 ${
               isActive ? 'bg-pink-100 text-pink-700 font-semibold' : 'text-gray-700'

@@ -16,6 +16,7 @@ import CatDetails from "../Components/CatDetails/CatDetails";
 import AllCats from "../Pages/AllCats/AllCats";
 import AddCatFoodForm from "../Pages/Seller/AddCatFoodForm/AddCatFoodForm";
 import FoodDetails from "../Components/FoodDetails/FoodDetails";
+import AllFoods from "../Pages/AllFoods/AllFoods";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,8 @@ const router = createBrowserRouter([
     {path:'blogPage',Component: BlogPage},
     {path:'cats/:id', Component: CatDetails},
     {path:'allCats',Component:AllCats},
-    {path:'catfood/:id', Component:FoodDetails}
+    {path:'catfood/:id', Component:FoodDetails},
+    {path:'allfoods',Component:AllFoods}
    ]
   },
   {path:'/auth',Component: AuthLayout,
