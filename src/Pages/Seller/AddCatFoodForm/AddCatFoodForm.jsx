@@ -1,11 +1,13 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import useAuth from '../../../hook/useAuth';
 import { imageUpload } from '../../../api/utils';
 import Loaer from '../../../Components/Loaer/Loaer';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const AddCatFoodForm = () => {
   const { user, loading } = useAuth();
@@ -13,6 +15,7 @@ const AddCatFoodForm = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { isSubmitting },
     watch,
   } = useForm();
@@ -46,6 +49,7 @@ const AddCatFoodForm = () => {
 
       const formData = {
         ...data,
+       expiryDate: data.dob?.toISOString().split('T')[0],
         sellerName: user?.displayName || '',
         sellerEmail: user?.email || '',
         imageUrls: [imageUrl], // single image
@@ -57,6 +61,7 @@ const AddCatFoodForm = () => {
       delete formData.image1;
 
       addMutation.mutate(formData);
+      console.log(formData)
     } catch (err) {
       console.error(err);
     }
@@ -113,6 +118,31 @@ const AddCatFoodForm = () => {
             <input {...register('quantity', { required: true })} type="number" placeholder="Quantity" className="sellerform-input" />
             <input {...register('price', { required: true })} type="number" placeholder="Price (BDT)" className="sellerform-input" />
             <input {...register('category')} placeholder="Category (e.g. Dry, Wet, Treat)" className="sellerform-input" />
+          {/*  */}
+           <div className="sellerform-input-group">
+          <label>ExpiryDate</label>
+          <Controller
+            control={control}
+            name="dob"
+            rules={{ required: true }}
+            render={({ field }) => (
+              <DatePicker
+                className="sellerform-input"
+                placeholderText="Select your ExpiryDate"
+                dateFormat="yyyy-MM-dd"
+                minDate={ new Date()}
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                scrollableYearDropdown
+                yearDropdownItemNumber={100}
+                isClearable
+                {...field}
+              />
+            )}
+          />
+         
+        </div>
           </div>
         </div>
 

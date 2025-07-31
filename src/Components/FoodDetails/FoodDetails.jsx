@@ -3,9 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useParams } from 'react-router';
 import Loaer from '../Loaer/Loaer';
+import CatFoodAdopt from '../Modal/CatFoodAdopt';
 
 const FoodDetails = () => {
   const { id } = useParams();
+  const [isOpen, setIsOpen] = useState(false)
   const { data: food, isLoading, error } = useQuery({
     queryKey: ['food', id],
     queryFn: async () => {
@@ -18,7 +20,9 @@ const FoodDetails = () => {
   if (isLoading) return <Loaer />;
   if (error) return <div className="text-center text-red-500">Something went wrong!</div>;
   if (!food) return <div className="text-center text-gray-500">No food found!</div>;
-
+  const closeModal = () => {
+    setIsOpen(false)
+  }
   return (
     <div className="w-full max-w-2xl mx-auto min-h-screen bg-gradient-to-br from-pink-50 to-white pb-16 px-4">
       {/* Main Image */}
@@ -84,10 +88,17 @@ const FoodDetails = () => {
       )}
       {/* CTA Button */}
       <div className="flex justify-center">
-        <button className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow transition-colors duration-200">
+        <button
+        onClick={() => setIsOpen(true)}
+         className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow transition-colors duration-200">
           Add to Cart
         </button>
       </div>
+       <CatFoodAdopt
+                food={food}
+                closeModal={closeModal}
+               isOpen={isOpen}
+              />
     </div>
   );
 };

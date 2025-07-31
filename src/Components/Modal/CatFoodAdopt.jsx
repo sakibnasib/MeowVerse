@@ -14,7 +14,7 @@ const divisionsWithDistricts = {
   Mymensingh: ['Mymensingh', 'Netrokona', 'Sherpur'],
 };
 
-const CatAdopt = ({ isOpen, closeModal, cat }) => {
+const CatFoodAdopt = ({ isOpen, closeModal, food }) => {
   const { user } = useAuth();
   const [selectedDivision, setSelectedDivision] = useState('');
   const [deliveryCharge, setDeliveryCharge] = useState(0);
@@ -33,18 +33,18 @@ const CatAdopt = ({ isOpen, closeModal, cat }) => {
   useEffect(() => {
     if (!district) return;
 
-    const address = cat?.sellerAddress?.toLowerCase().trim();
+    const address = food?.sellerAddress?.toLowerCase().trim();
 const sellerDistrict = address?.split(',').pop()?.trim();
     const buyerDistrict = district?.toLowerCase().trim();
 console.log(sellerDistrict,buyerDistrict)
     const delivery = sellerDistrict === buyerDistrict ? 150 : 250;
     setDeliveryCharge(delivery);
-    setTotal(quantity * cat.price + delivery);
-  }, [district, quantity, cat]);
+    setTotal(quantity * food.price + delivery);
+  }, [district, quantity, food]);
 
   const onSubmit = (data) => {
     const order = {
-      catId: cat._id,
+      catId: food._id,
       buyer: user?.email,
       quantity: +data.quantity,
       division: data.division,
@@ -52,14 +52,14 @@ console.log(sellerDistrict,buyerDistrict)
       phone: data.phone,
       deliveryCharge,
       totalAmount: total,
-      catName:cat.name,
-      catBreed:cat.breed,
-      catGender:cat.gender,
-      catAge:cat.age,
-      catColor:cat.color,
-      catVaccinated:cat.vaccinated,
-      catWeight:cat.weight,
-      catImg:cat.imageUrls,
+    //   catName:cat.name,
+    //   catBreed:cat.breed,
+    //   catGender:cat.gender,
+    //   catAge:cat.age,
+    //   catColor:cat.color,
+    //   catVaccinated:cat.vaccinated,
+    //   catWeight:cat.weight,
+    //   catImg:cat.imageUrls,
     };
     console.log('Submitted Order:', order);
     closeModal();
@@ -71,14 +71,14 @@ console.log(sellerDistrict,buyerDistrict)
       <DialogPanel className="bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
         <div className="px-6 pt-4 pb-2 overflow-y-auto flex-1">
           <DialogTitle className="text-lg font-bold text-pink-700 text-center mb-2">
-            Adopt {cat.name} <span className="text-gray-500">({cat.breed})</span>
+            Adopt {food.name} <span className="text-gray-500">({food.brand})</span>
           </DialogTitle>
 
           {/* Cat Info */}
           <div className="text-sm text-gray-600 mb-4">
-            <p>Gender: {cat.gender} | Age: {cat.age}m | Color: {cat.color}</p>
-            <p>Weight: {cat.weight}kg | Vaccinated: {cat.vaccinated ? 'Yes' : 'No'}</p>
-            <p>Available: {cat.quantity} | Price: ৳{cat.price}</p>
+            <p>Category: {food.category}</p>
+            <p>Weight: {food.weight}kg</p>
+            <p>Available: {food.quantity} | Price: ৳{food.price}</p>
           </div>
 
           {/* Form */}
@@ -97,14 +97,14 @@ console.log(sellerDistrict,buyerDistrict)
               <label className="text-sm font-medium">Quantity</label>
               <input
                 type="number"
-                {...register('quantity', { required: true, min: 1, max: cat.quantity })}
+                {...register('quantity', { required: true, min: 1, max: food.quantity })}
                 defaultValue={1}
                 min={1}
-                max={cat.quantity}
+                max={food.quantity}
                 className="w-full border px-3 py-2 rounded text-sm"
               />
               {errors.quantity && (
-                <p className="text-xs text-red-500">Must be between 1 and {cat.quantity}</p>
+                <p className="text-xs text-red-500">Must be between 1 and {food.quantity}</p>
               )}
             </div>
 
@@ -184,5 +184,4 @@ console.log(sellerDistrict,buyerDistrict)
   );
 };
 
-export default CatAdopt;
-
+export default CatFoodAdopt;

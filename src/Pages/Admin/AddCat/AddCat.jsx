@@ -44,7 +44,7 @@ const {data:sellerdata=[],isLoading} = useQuery({
     return data
   }
 })
- console.log(sellerdata);
+
 const addMutation=useMutation({
   mutationFn:async(formData)=>{
      const res = await axios.post('http://localhost:3000/cats', formData)
@@ -87,8 +87,7 @@ const addMutation=useMutation({
       console.error('Submission error:', err);
     }
   };
-
-  if (loading) return <Loaer />;
+  if (loading ||isLoading) return <Loaer />;
 
   return (
     <div className="max-w-2xl mx-auto p-4 sm:p-8 bg-rose-50 rounded-2xl shadow-lg mt-8 mb-8">
@@ -120,7 +119,7 @@ const addMutation=useMutation({
               <label className="block mb-2 font-medium text-gray-600">Phone Number</label>
               <input
   {...register('sellerPhone')}
-  value={sellerdata?.phone || ''}
+   value={sellerdata?.phone || ''}
   readOnly
   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:outline-none"
 />
@@ -129,7 +128,7 @@ const addMutation=useMutation({
               <label className="block mb-2 font-medium text-gray-600">Address</label>
               <input
                 {...register('sellerAddress')}
-  value={`${sellerdata?.division || ''},${sellerdata?.district || ''}`}
+   value={`${sellerdata?.division || ''}, ${sellerdata?.district || ''}`}
   readOnly
                 // value={sellerdata?.address || ''}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:outline-none"

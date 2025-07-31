@@ -270,7 +270,7 @@ const AllCats = () => {
                   Page {page} of {totalPages}
                 </span>
                 <button
-                  disabled={page === totalPages}
+                  // disabled={page === totalPages}
                   onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
                   className="btn btn-sm btn-outline flex items-center gap-1"
                 >
