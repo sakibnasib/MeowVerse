@@ -19,7 +19,7 @@ const DashboardLayout = () => {
     <div className="flex min-h-screen ">
       {/* Sidebar */}
       <div
-        className={`bg-rose-50 shadow-md w-64 p-6 space-y-6 fixed top-0 left-0 h-full z-30 transform ${
+        className={`bg-gradient-to-br from-pink-50 via-white to-purple-50 backdrop-blur-md shadow-md w-64 p-6 space-y-6 fixed top-0 left-0 h-full z-30 transform ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 md:translate-x-0`}
       >

@@ -29,7 +29,7 @@ const PandingOrders = () => {
     setSelectedOrder(null);
   };
 const cancelMutation=useMutation({
-  mutationFn:async()=>await axios.delete(),
+  mutationFn:async(id)=>await axios.delete(`http://localhost:3000/order/${id}`),
   onSuccess:()=>{
      Swal.fire('Cancelled!', 'The Order been cancelled.', 'success');
       queryClient.invalidateQueries(['data']);

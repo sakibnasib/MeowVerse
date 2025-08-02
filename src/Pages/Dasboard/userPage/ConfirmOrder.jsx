@@ -25,6 +25,7 @@ const ConfirmOrder = () => {
   const { data, isLoading } = useOrders(user?.email, 'confirmed', page, limit);
 const totalPages = Math.ceil((data?.totalCount || 0) / limit);
 if(isLoading) return <Loaer/>
+console.log(data.bookings)
     return (
          <div className="w-11/12 mx-auto my-10">
       <h2 className="text-3xl font-bold text-center mb-4">Your Confirmed Orders</h2>
