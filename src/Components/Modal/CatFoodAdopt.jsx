@@ -269,6 +269,7 @@ const CatFoodAdopt = ({ isOpen, closeModal, food }) => {
       orderId: food._id,
       buyer: user?.email,
       quantity: +data.quantity,
+       sellerEmail:food.sellerEmail,
       buyerAddress: `${data.division}, ${data.district}`,
       phone: data.phone,
       deliveryCharge,

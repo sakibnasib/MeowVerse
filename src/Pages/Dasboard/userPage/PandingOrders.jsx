@@ -16,7 +16,7 @@ const PandingOrders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
-   const { data, isLoading } = useOrders(user?.email, 'pending', page, limit);
+   const { data =[], isLoading } = useOrders(user?.email, 'pending', page, limit);
   const totalPages = Math.ceil((data?.totalCount || 0) / limit);
 
   const openModal = (order) => {
@@ -79,7 +79,7 @@ const handleDelete =(id)=>{
               </tr>
             </thead>
             <tbody>
-              {data.bookings.map((order, index) => (
+              {data?.bookings?.map((order, index) => (
                 <tr key={order._id}>
                   <td>{(page - 1) * limit + index + 1}</td>
                   <td>{order.Type}</td>

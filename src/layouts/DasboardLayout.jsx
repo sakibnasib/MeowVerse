@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { FaCat, FaHome, FaImage, FaBlog, FaClipboardList, FaUser } from "react-icons/fa";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Logo from "../Components/Logo/Logo";
-import UserMenu from "../Components/Menu/UserMenu/UserMenu";
+// import UserMenu from "../Components/Menu/UserMenu/UserMenu";
 import { Outlet } from "react-router";
+import SellerMenu from "../Components/Menu/SellerMenu/SellerMenu";
 
 const SidebarLink = ({ icon: Icon, label }) => (
   <div className="flex items-center gap-3 text-gray-700 hover:text-pink-600 px-4 py-2 transition">
@@ -28,7 +29,8 @@ const DashboardLayout = () => {
         </div>
         <hr className=" text-pink-600"/>
         <nav className="space-y-2">
-        <UserMenu/>
+        {/* <UserMenu/> */}
+        <SellerMenu/>
         </nav>
       </div>
 

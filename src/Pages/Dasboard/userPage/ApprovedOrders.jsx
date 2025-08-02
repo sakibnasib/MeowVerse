@@ -147,20 +147,8 @@ const ApprovedOrders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  // const { data, isLoading } = useQuery({
-  //   queryKey: ['orders', user?.email, page],
-  //   queryFn: async () => {
-  //     const res = await axios.get(`http://localhost:3000/order/${user?.email}?status=approved`, {
-  //       params: { page, limit },
-  //     });
-  //     return res.data;
-  //   },
-  //   enabled: !!user?.email,
-  //   keepPreviousData: true,
-  // });
 
-  
-   const { data, isLoading } = useOrders(user?.email, 'approved', page, limit);
+   const { data =[], isLoading } = useOrders(user?.email, 'approved', page, limit);
   const totalPages = Math.ceil((data?.totalCount || 0) / limit);
 
   const openModal = (order) => {
@@ -198,7 +186,7 @@ console.log(data.bookings)
               </tr>
             </thead>
             <tbody>
-              {data.bookings.map((order, index) => (
+              {data?.bookings?.map((order, index) => (
                 <tr key={order._id}>
                   <td>{(page - 1) * limit + index + 1}</td>
                   <td>{order.Type}</td>

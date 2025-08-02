@@ -269,6 +269,7 @@ const CatAdopt = ({ isOpen, closeModal, cat }) => {
       Type: 'Cat',
       orderId: cat._id,
       buyer: user?.email,
+      sellerEmail:cat.sellerEmail,
       quantity: +data.quantity,
       division: data.division,
       district: data.district,

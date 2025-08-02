@@ -21,6 +21,8 @@ import ApprovedOrders from "../Pages/Dasboard/userPage/ApprovedOrders";
 import PaymentPage from "../Pages/Dasboard/userPage/PaymentPage";
 import PandingOrders from "../Pages/Dasboard/userPage/PandingOrders";
 import ConfirmOrder from "../Pages/Dasboard/userPage/ConfirmOrder";
+import ApproveOrde from "../Pages/Seller/ApproveOrde/ApproveOrde";
+import SellerAllCats from "../Pages/Seller/AllCat/AllCats";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +53,13 @@ const router = createBrowserRouter([
       {path:'PandingOrders',Component:PandingOrders},
       {path:'approvedOrders',Component:ApprovedOrders},
       {path:'confirm-order',Component:ConfirmOrder},
-      {path:'payment',Component:PaymentPage}
+      {path:'payment',Component:PaymentPage},
+
+
+      {path:"sellerApproveOrde",Component:ApproveOrde},
+      {path:'seller/add-category',Component:AddCatForm},
+      {path:'seller/add-category-food',Component:AddCatFoodForm},
+      {path:'seller/all-categories',Component:SellerAllCats}
     ]
    }
 ]);
