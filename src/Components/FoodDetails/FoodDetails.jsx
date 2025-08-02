@@ -49,6 +49,7 @@ const FoodDetails = () => {
         <span>Brand: <span className="font-semibold text-gray-800">{food.brand}</span></span>
         <span>Category: <span className="font-semibold text-gray-800">{food.category}</span></span>
         <span>Weight: <span className="font-semibold text-gray-800">{food.weight}kg</span></span>
+        <span>ExpiryDate: <span className="font-semibold text-gray-800">{food?.expiryDate}</span></span>
       </div>
       <div className="flex items-center gap-4 mb-2">
         <span className="text-xl font-bold text-pink-600">৳{food.price}</span>
@@ -83,6 +84,7 @@ const FoodDetails = () => {
             <div>Seller: <span className="font-semibold text-gray-800">{food.sellerName}</span></div>
             {food.sellerEmail && <div>Email: <span className="font-semibold text-gray-800">{food.sellerEmail}</span></div>}
             {food.sellerPhone && <div>Phone: <span className="font-semibold text-gray-800">{food.sellerPhone}</span></div>}
+            {food.sellerAddress && <div>SellerAddress: <span className="font-semibold text-gray-800">{food.sellerAddress}</span></div>}
           </div>
         </div>
       )}

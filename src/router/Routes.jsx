@@ -17,6 +17,10 @@ import AllCats from "../Pages/AllCats/AllCats";
 import AddCatFoodForm from "../Pages/Seller/AddCatFoodForm/AddCatFoodForm";
 import FoodDetails from "../Components/FoodDetails/FoodDetails";
 import AllFoods from "../Pages/AllFoods/AllFoods";
+import ApprovedOrders from "../Pages/Dasboard/userPage/ApprovedOrders";
+import PaymentPage from "../Pages/Dasboard/userPage/PaymentPage";
+import PandingOrders from "../Pages/Dasboard/userPage/PandingOrders";
+import ConfirmOrder from "../Pages/Dasboard/userPage/ConfirmOrder";
 
 const router = createBrowserRouter([
   {
@@ -41,9 +45,13 @@ const router = createBrowserRouter([
   },
   {path:'/dashboard', Component:DashboardLayout,
     children:[
-      {path: 'AddCatForm',Component:AddCatForm},
+      // {path: 'AddCatForm',Component:AddCatForm},
       {path:'Sellerform',Component:Sellerform},
-      {path:'addCatFoodForm',Component: AddCatFoodForm}
+      {path:'addCatFoodForm',Component: AddCatFoodForm},
+      {path:'PandingOrders',Component:PandingOrders},
+      {path:'approvedOrders',Component:ApprovedOrders},
+      {path:'confirm-order',Component:ConfirmOrder},
+      {path:'payment',Component:PaymentPage}
     ]
    }
 ]);

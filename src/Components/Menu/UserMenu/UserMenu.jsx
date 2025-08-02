@@ -10,7 +10,7 @@ const UserMenu = () => {
     <div className="">
       <nav className="flex flex-col space-y-2">
         <NavLink
-          to="/dashboard/Sellerform"
+          to="/dashboard/"
           className={({ isActive }) =>
             `${linkClass} ${isActive ? activeClass : ''}`
           }
@@ -18,7 +18,7 @@ const UserMenu = () => {
           🧍 Profile
         </NavLink>
         <NavLink
-          to="/dashboard/AddCatForm"
+          to="/dashboard/Sellerform"
           className={({ isActive }) =>
             `${linkClass} ${isActive ? activeClass : ''}`
           }
@@ -26,20 +26,21 @@ const UserMenu = () => {
           🛍️ Become a Seller
         </NavLink>
         <NavLink
-          to="/dashboard/addCatFoodForm"
+          to="/dashboard/PandingOrders"
           className={({ isActive }) =>
             `${linkClass} ${isActive ? activeClass : ''}`
           }
         >
-          📦 My Orders
+          📦 My Pending Orders
         </NavLink>
         <NavLink
-          to="/dashboard/cart"
+          to="/dashboard/approvedOrders"
           className={({ isActive }) =>
             `${linkClass} ${isActive ? activeClass : ''}`
           }
         >
-          🛒 Add to Cart
+         
+         📦Approved Orders
         </NavLink>
         <NavLink
           to="/dashboard/confirm-order"
