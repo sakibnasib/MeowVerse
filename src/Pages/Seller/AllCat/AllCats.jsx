@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import useAuth from '../../../hook/useAuth';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const SellerAllCats = () => {
   const { user } = useAuth();
@@ -9,6 +10,7 @@ const SellerAllCats = () => {
   const limit = 10;
   const queryClient = useQueryClient();
 
+  // Fetch cats
   const { data = {}, isLoading } = useQuery({
     queryKey: ['seller-cats', user?.email, page],
     queryFn: async () => {
@@ -21,22 +23,39 @@ const SellerAllCats = () => {
     keepPreviousData: true,
   });
 
-  const handleEdit = (cat) => {
-    console.log('Edit clicked for:', cat);
-    // Implement navigation or modal
+  // Delete mutation
+  const deleteMutation = useMutation({
+    mutationFn: async (catId) => {
+      return axios.delete(`http://localhost:3000/seller/cats/${catId}`);
+    },
+    onSuccess: () => {
+      Swal.fire('Deleted!', 'The cat has been deleted.', 'success');
+      queryClient.invalidateQueries(['seller-cats', user?.email]);
+    },
+    onError: () => {
+      Swal.fire('Failed!', 'Failed to delete the cat.', 'error');
+    },
+  });
+
+  const handleDelete = (catId) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this cat!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMutation.mutate(catId);
+      }
+    });
   };
 
-  const handleDelete = async (catId) => {
-    const confirmed = window.confirm('Are you sure you want to delete this cat?');
-    if (confirmed) {
-      try {
-        await axios.delete(`http://localhost:3000/seller/cats/${catId}`);
-        queryClient.invalidateQueries(['seller-cats', user?.email]);
-      } catch (error) {
-        console.error('Delete failed:', error);
-        alert('Failed to delete. Please try again.');
-      }
-    }
+  const handleEdit = (cat) => {
+    console.log('Edit clicked for:', cat);
+    // You can use a modal or navigate to another page here
   };
 
   return (
@@ -52,15 +71,15 @@ const SellerAllCats = () => {
           <table className="min-w-full divide-y divide-gray-200 bg-white">
             <thead className="bg-gray-100 text-sm font-semibold text-gray-700">
               <tr>
-                <th className="px-4 py-3 text-left">#</th>
-                <th className="px-4 py-3 text-left">Image</th>
-                <th className="px-4 py-3 text-left">Name</th>
-                <th className="px-4 py-3 text-left">Breed</th>
-                <th className="px-4 py-3 text-left">Gender</th>
-                <th className="px-4 py-3 text-left">Age</th>
-                <th className="px-4 py-3 text-left">Color</th>
-                <th className="px-4 py-3 text-left">Qty</th>
-                <th className="px-4 py-3 text-left">Price (৳)</th>
+                <th className="px-4 py-3">#</th>
+                <th className="px-4 py-3">Image</th>
+                <th className="px-4 py-3">Name</th>
+                <th className="px-4 py-3">Breed</th>
+                <th className="px-4 py-3">Gender</th>
+                <th className="px-4 py-3">Age</th>
+                <th className="px-4 py-3">Color</th>
+                <th className="px-4 py-3">Qty</th>
+                <th className="px-4 py-3">Price (৳)</th>
                 <th className="px-4 py-3 text-center">Actions</th>
               </tr>
             </thead>
