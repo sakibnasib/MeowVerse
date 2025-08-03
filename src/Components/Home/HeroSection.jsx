@@ -48,7 +48,7 @@ const HeroSection = () => {
               </div>
 
               {/* Quick Stats */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 pt-6">
+              {/* <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 pt-6">
                 <div className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-pink-600">500+</div>
                   <div className="text-xs sm:text-sm text-gray-500">Happy Cats</div>
@@ -61,7 +61,7 @@ const HeroSection = () => {
                   <div className="text-xl sm:text-2xl font-bold text-pink-600">50+</div>
                   <div className="text-xs sm:text-sm text-gray-500">Cat Breeds</div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
