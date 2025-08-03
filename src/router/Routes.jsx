@@ -23,6 +23,7 @@ import PandingOrders from "../Pages/Dasboard/userPage/PandingOrders";
 import ConfirmOrder from "../Pages/Dasboard/userPage/ConfirmOrder";
 import ApproveOrde from "../Pages/Seller/ApproveOrde/ApproveOrde";
 import SellerAllCats from "../Pages/Seller/AllCat/AllCats";
+import SellerAllCatFood from "../Pages/Seller/AllCatFood/SellerAllCatFood";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +60,8 @@ const router = createBrowserRouter([
       {path:"sellerApproveOrde",Component:ApproveOrde},
       {path:'seller/add-category',Component:AddCatForm},
       {path:'seller/add-category-food',Component:AddCatFoodForm},
-      {path:'seller/all-categories',Component:SellerAllCats}
+      {path:'seller/all-categories',Component:SellerAllCats},
+      {path:'seller/all-category-food',Component:SellerAllCatFood}
     ]
    }
 ]);
