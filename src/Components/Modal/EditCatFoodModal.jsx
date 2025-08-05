@@ -6,6 +6,7 @@ import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { imageUpload } from '../../api/utils';
+import Swal from 'sweetalert2';
 
 const EditCatFoodModal = ({ closeModal, food, isOpen }) => {
   const queryClient = useQueryClient();
@@ -39,6 +40,7 @@ const EditCatFoodModal = ({ closeModal, food, isOpen }) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['cat-foods']);
+       Swal.fire('Updated', 'Cat added successfully!', 'success')
       closeModal();
     },
     onError: (err) => {

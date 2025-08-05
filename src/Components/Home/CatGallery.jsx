@@ -25,7 +25,7 @@ const CatGallery = () => {
     : images.filter(img => img.category === selectedCategory);
 
   return (
-    <section className="min-h-screen rounded-2xl bg-gradient-to-br from-pink-50 via-white to-purple-50 py-20 px-4 sm:px-6 lg:px-8">
+    <section className="mt-10 min-h-screen rounded-2xl bg-gradient-to-br from-pink-50 via-white to-purple-50 py-20 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
         
         {/* Header Section */}

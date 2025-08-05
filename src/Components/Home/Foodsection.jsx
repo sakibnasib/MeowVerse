@@ -14,8 +14,8 @@ const Foodsection = () => {
         }
     })
     return (
-        <div className='mt-10'>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-pink-600">Explore Cat Foods for Your Furry Friend</h2>
+        <div className='mt-10 '>
+            <h2 className="pt-10 text-2xl sm:text-3xl font-bold text-center mb-6 text-pink-600">Explore Cat Foods for Your Furry Friend</h2>
             {isLoading ? <Loaer/>: <>
             {<div className=' mt-5 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
                 {data.map(food=><CatFoodCard key={food._id}  food={food}/>)}

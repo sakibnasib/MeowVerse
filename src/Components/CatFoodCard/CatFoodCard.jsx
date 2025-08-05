@@ -75,7 +75,7 @@ import { FaWeightHanging, FaBoxOpen, FaEye } from 'react-icons/fa';
 
 const CatFoodCard = ({ food }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-100">
+    <div className=" rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-100">
       {/* Image Section */}
       <div className="relative h-40">
         <img

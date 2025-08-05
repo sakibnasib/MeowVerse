@@ -66,7 +66,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="rounded-2xl mb-10 bg-gradient-to-br from-pink-50 via-white to-purple-50 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="rounded-2xl mt-10 mb-10 bg-gradient-to-br from-pink-50 via-white to-purple-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-6xl">
         
         {/* Header */}

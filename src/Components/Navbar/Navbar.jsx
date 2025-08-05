@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router";
 import useAuth from "../../hook/useAuth";
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import Loaer from "../Loaer/Loaer";
+import DarkMod from "../DarkMod/DarkMod";
 
 const Navbar = () => {
   const {user,loading}=useAuth()
@@ -64,6 +65,7 @@ const Navbar = () => {
     </>}
     
   </div>
+  <DarkMod/>
 </div>
     );
 };
