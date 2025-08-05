@@ -16,7 +16,7 @@ const navLinkClass = ({ isActive }) =>
 
 const SellerMenu = () => {
   return (
-    <div className="p-4 space-y-2">
+    <div className=" space-y-2">
       <nav className="space-y-2">
         <NavLink to="/seller/profile" className={navLinkClass}>
           <User size={18} />

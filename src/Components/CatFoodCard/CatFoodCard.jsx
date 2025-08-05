@@ -71,7 +71,7 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import { FaWeightHanging, FaBoxOpen } from 'react-icons/fa';
+import { FaWeightHanging, FaBoxOpen, FaEye } from 'react-icons/fa';
 
 const CatFoodCard = ({ food }) => {
   return (
@@ -98,14 +98,14 @@ const CatFoodCard = ({ food }) => {
       <div className="p-4">
         {/* Name and Brand */}
         <div className="mb-3">
-          <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+          <h3 className="text-xs font-semibold text-gray-800 mb-1 line-clamp-2">
             {food.name}
           </h3>
-          <p className="text-sm text-gray-500">{food.brand} • {food.category}</p>
+          <p className="text-xs text-gray-500">{food.brand} • {food.category}</p>
         </div>
 
         {/* Food Details */}
-        <div className="space-y-2 mb-4 text-sm text-gray-700">
+        <div className="space-y-2 mb-4 text-xs text-gray-700">
           <div className="flex justify-between">
             <span className="flex items-center gap-1 text-gray-600">
               <FaWeightHanging className="w-3 h-3" />
@@ -126,13 +126,14 @@ const CatFoodCard = ({ food }) => {
         {/* Price and Button */}
         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           <div>
-            <span className="text-xl font-bold text-pink-600">৳{food.price}</span>
+            <span className="text-sm font-bold text-pink-600">৳{food.price}</span>
           </div>
 
           <Link
             to={`/catfood/${food._id}`}
-            className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center gap-1"
+            className="flex items-center gap-1 bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
           >
+             <FaEye className="w-3 h-3" />
             View
           </Link>
         </div>

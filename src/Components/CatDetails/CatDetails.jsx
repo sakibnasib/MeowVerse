@@ -16,6 +16,7 @@ const CatDetails = () => {
       return res.data;
     },
   });
+  
   const [mainImg, setMainImg] = useState(cat?.imageUrls?.[0] || '');
   const galleryImgs = cat?.imageUrls?.filter(img => img !== mainImg) || [];
 

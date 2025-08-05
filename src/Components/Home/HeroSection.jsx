@@ -13,7 +13,7 @@ const catImages = [
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen  rounded-3xl bg-gradient-to-br from-pink-50 via-white to-purple-50 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <section className=" rounded-3xl bg-gradient-to-br from-pink-50 via-white to-purple-50 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
           

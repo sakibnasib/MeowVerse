@@ -36,7 +36,7 @@ const meowFact = "😺 Did you know? Cats can make over 100 different vocal soun
 
 const DailyMeowSection = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 py-20 px-4 sm:px-6 lg:px-8">
+    <section className="mt-10 rounded-2xl bg-gradient-to-br from-pink-50 via-white to-purple-50 py-20 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
         
         {/* Header Section */}
@@ -169,7 +169,7 @@ const DailyMeowSection = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email address"
-                className="flex-1 px-6 py-3 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="flex-1 px-6 py-3 rounded-full ring-white/50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50"
               />
               <button className="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors duration-300 transform hover:scale-105">
                 Subscribe

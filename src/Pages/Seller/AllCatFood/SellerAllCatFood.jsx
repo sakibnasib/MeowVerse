@@ -4,13 +4,14 @@ import React, { useState } from 'react';
 import useAuth from '../../../hook/useAuth';
 import Loaer from '../../../Components/Loaer/Loaer';
 import Swal from 'sweetalert2';
+import EditCatFoodModal from '../../../Components/Modal/EditCatFoodModal';
 
 const SellerAllCatFood = () => {
   const { user } = useAuth();
   const [page, setPage] = useState(1);
   const limit = 10;
   const queryClient = useQueryClient();
-
+ const [isOpen, setIsOpen] = useState(false)
   // GET Data
   const { data = {}, isLoading } = useQuery({
     queryKey: ['seller-foods', user?.email, page],
@@ -39,23 +40,23 @@ const SellerAllCatFood = () => {
   });
 
   // EDIT Mutation (Example: for toggling name or other property)
-  const editMutation = useMutation({
-    mutationFn: async ({ foodId, updatedData }) => {
-      return await axios.patch(`http://localhost:3000/seller/catfood/${foodId}`, updatedData);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['seller-foods', user?.email]);
-    },
-    onError: (error) => {
-      console.error('Edit failed:', error);
-      alert('Failed to edit. Please try again.');
-    },
-  });
+  // const editMutation = useMutation({
+  //   mutationFn: async ({ foodId, updatedData }) => {
+  //     return await axios.patch(`http://localhost:3000/seller/catfood/${foodId}`, updatedData);
+  //   },
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(['seller-foods', user?.email]);
+  //   },
+  //   onError: (error) => {
+  //     console.error('Edit failed:', error);
+  //     alert('Failed to edit. Please try again.');
+  //   },
+  // });
 
-  const handleEdit = (food) => {
-    const updatedData = { name: prompt("New name:", food.name) || food.name };
-    editMutation.mutate({ foodId: food._id, updatedData });
-  };
+  // const handleEdit = (food) => {
+  //   const updatedData = { name: prompt("New name:", food.name) || food.name };
+  //   editMutation.mutate({ foodId: food._id, updatedData });
+  // };
 
   const handleDelete = (foodId) => {
   Swal.fire({
@@ -94,6 +95,9 @@ const SellerAllCatFood = () => {
       minimumFractionDigits: 0,
     }).format(amount);
 
+     const closeModal = () => {
+    setIsOpen(false)
+  }
   return (
     <div className="p-6">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Your Cat Food Listings</h2>
@@ -138,11 +142,11 @@ const SellerAllCatFood = () => {
 
                   <td className="px-4 flex py-3 space-x-2 text-center">
                     <button
-                      onClick={() => handleEdit(food)}
-                      disabled={editMutation.isLoading}
+                      onClick={() => setIsOpen(true)}
+                      // disabled={editMutation.isLoading}
                       className="px-3 py-1 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700"
                     >
-                      {editMutation.isLoading ? 'Saving...' : 'Edit'}
+                  E    {/* {editMutation.isLoading ? 'Saving...' : 'Edit'} */}
                     </button>
                     <button
                       onClick={() => handleDelete(food._id)}
@@ -151,11 +155,17 @@ const SellerAllCatFood = () => {
                     >
                       {deleteMutation.isLoading ? 'Deleting...' : 'Delete'}
                     </button>
+                     <EditCatFoodModal
+                food={food}
+                closeModal={closeModal}
+               isOpen={isOpen}
+              />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+           
         </div>
       )}
 

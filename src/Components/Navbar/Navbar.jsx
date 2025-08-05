@@ -59,8 +59,8 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
     {user ? <ProfileDropdown/> :<>
-    <Link to='/auth/login' className="">Login</Link>
-    <Link to='/auth/register' className="ml-2">Register</Link>
+    <Link to='/auth/login' className="btn rounded-2xl bg-pink-100 text-pink-700 font-semibold">Login</Link>
+    <Link to='/auth/register' className="ml-2 btn rounded-2xl bg-pink-100 text-pink-700 font-semibold">Register</Link>
     </>}
     
   </div>

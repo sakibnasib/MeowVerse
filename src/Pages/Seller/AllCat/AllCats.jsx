@@ -3,14 +3,16 @@ import useAuth from '../../../hook/useAuth';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import EditCatModal from '../../../Components/Modal/EditCatModal';
 
 const SellerAllCats = () => {
   const { user } = useAuth();
   const [page, setPage] = useState(1);
+  const [editingCat, setEditingCat] = useState(null);
   const limit = 10;
   const queryClient = useQueryClient();
 
-  // Fetch cats
+  // Fetch cats 
   const { data = {}, isLoading } = useQuery({
     queryKey: ['seller-cats', user?.email, page],
     queryFn: async () => {
@@ -52,12 +54,29 @@ const SellerAllCats = () => {
       }
     });
   };
-
-  const handleEdit = (cat) => {
-    console.log('Edit clicked for:', cat);
-    // You can use a modal or navigate to another page here
-  };
-
+const updateCatMutation = useMutation({
+  mutationFn: async ({ catId, updatedData }) => {
+    const res = await axios.patch(`http://localhost:3000/seller/cats/${catId}`, updatedData);
+    return res.data;
+  },
+  onSuccess: () => {
+    Swal.fire('Success!', 'Cat updated successfully.', 'success');
+    queryClient.invalidateQueries({ queryKey: ['seller-cats', user?.email] });
+  },
+  onError: () => {
+    Swal.fire('Failed!', 'Failed to update cat.', 'error');
+  },
+});
+ const handleUpdateCat = async (updatedCat) => {
+  console.log(updatedCat)
+  updateCatMutation.mutate({ catId: editingCat._id, updatedData: updatedCat });
+};
+const handleEdit = (cat) => {
+  setEditingCat(cat);
+};
+const handleModalClose = () => {
+  setEditingCat(null);
+};
   return (
     <div className="p-6">
       <h2 className="text-2xl font-semibold mb-4">Your Listed Cats</h2>
@@ -101,10 +120,10 @@ const SellerAllCats = () => {
                   <td className="px-4 py-3">{cat.color}</td>
                   <td className="px-4 py-3">{cat.quantity}</td>
                   <td className="px-4 py-3">৳{cat.price}</td>
-                  <td className="px-4 py-3 text-center space-x-2">
+                  <td className="px-4 flex py-3 text-center space-x-2">
                     <button
-                      onClick={() => handleEdit(cat)}
-                      className="px-3 py-1 text-xs text-white bg-blue-500 hover:bg-blue-600 rounded"
+                     onClick={() => handleEdit(cat)}
+                      className="px-3  py-1 text-xs text-white bg-blue-500 hover:bg-blue-600 rounded"
                     >
                       Edit
                     </button>
@@ -140,6 +159,13 @@ const SellerAllCats = () => {
           Next
         </button>
       </div>
+      <EditCatModal
+  isOpen={!!editingCat}
+  onClose={handleModalClose}
+  cat={editingCat}
+  onSubmit={handleUpdateCat}
+/>
+
     </div>
   );
 };
