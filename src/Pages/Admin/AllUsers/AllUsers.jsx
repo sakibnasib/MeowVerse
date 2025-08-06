@@ -11,6 +11,16 @@ const AllUsers = () => {
   const [page, setPage] = useState(1);
   const limit = 10;
 
+const formatDateTime = (iso) =>
+    new Date(iso).toLocaleString(undefined, {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
   const axiosSecure = useAxiosSecure();
   // Debounce the search input
   useEffect(() => {
@@ -78,8 +88,21 @@ const AllUsers = () => {
                 <tr key={user._id}>
                   <td className="border px-4 py-2">{user.name}</td>
                   <td className="border px-4 py-2">{user.email}</td>
-                   <td className="border px-4 py-2">{user.created_at}</td>
-                    <td className="border px-4 py-2">{user.last_loggedIn}</td>
+                   <td className="border px-4 py-2">
+                     {new Date(user.created_at).toLocaleDateString('en-IN', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit',
+                      })}
+                   </td>
+                    <td className="border px-4 py-2">
+                     {user.last_loggedIn? formatDateTime(user.last_loggedIn): 'Unknown'}
+                       {/* {new Date(user.last_loggedIn).toLocaleDateString('en-IN', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit',
+                      })} */}
+                    </td>
                   <td className="border px-4 py-2 capitalize">{user.role || ''}</td>
                 </tr>
               ))}

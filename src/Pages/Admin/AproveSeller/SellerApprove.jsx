@@ -89,7 +89,7 @@ const SellerApprove = () => {
       Swal.fire('Rejected!', 'Seller has been rejected.', 'info');
       queryClient.invalidateQueries(['applied-sellers']);
     } catch (err) {
-      Swal.fire('Error', 'Failed to reject seller', 'error');
+      Swal.fire('Error', 'Failed to reject seller',{err} );
     }
   };
 

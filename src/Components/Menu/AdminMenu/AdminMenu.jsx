@@ -31,7 +31,7 @@ const AdminMenu = () => {
                 <span>All Users</span>
             </NavLink>
 
-            <NavLink to="/dashboard/sellers" className={linkClass}>
+            <NavLink to="/dashboard/allsellers" className={linkClass}>
                 <Store size={20} />
                 <span>All Sellers</span>
             </NavLink>

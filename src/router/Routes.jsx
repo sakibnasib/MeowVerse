@@ -26,6 +26,7 @@ import SellerAllCats from "../Pages/Seller/AllCat/AllCats";
 import SellerAllCatFood from "../Pages/Seller/AllCatFood/SellerAllCatFood";
 import SellerApprove from "../Pages/Admin/AproveSeller/SellerApprove";
 import AllUsers from "../Pages/Admin/AllUsers/AllUsers";
+import Allsellers from "../Pages/Admin/Allsellers/Allsellers";
 
 const router = createBrowserRouter([
   {
@@ -67,7 +68,8 @@ const router = createBrowserRouter([
 
 
       {path:'sellersapprove',Component:SellerApprove},
-      {path:'allUsers',Component:AllUsers}
+      {path:'allUsers',Component:AllUsers},
+      {path:'allsellers',Component:Allsellers}
     ]
 
    }
