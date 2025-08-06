@@ -5,6 +5,7 @@ import useAuth from '../../../hook/useAuth';
 import Loaer from '../../../Components/Loaer/Loaer';
 import Swal from 'sweetalert2';
 import EditCatFoodModal from '../../../Components/Modal/EditCatFoodModal';
+import useAxiosSecure from '../../../hook/useAxiosSecure';
 
 const SellerAllCatFood = () => {
   const { user } = useAuth();
@@ -12,11 +13,12 @@ const SellerAllCatFood = () => {
   const limit = 10;
   const queryClient = useQueryClient();
  const [isOpen, setIsOpen] = useState(false)
+ const axiosSecure=useAxiosSecure()
   // GET Data
   const { data = {}, isLoading } = useQuery({
     queryKey: ['seller-foods', user?.email, page],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/seller/allfood/${user?.email}`, {
+      const res = await axiosSecure.get(`/seller/allfood/${user?.email}`, {
         params: { page, limit },
       });
       return res.data;
@@ -28,7 +30,7 @@ const SellerAllCatFood = () => {
   // DELETE Mutation
   const deleteMutation = useMutation({
     mutationFn: async (foodId) => {
-      return await axios.delete(`http://localhost:3000/seller/catfood/${foodId}`);
+      return await axiosSecure.delete(`/seller/catfood/${foodId}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['seller-foods', user?.email]);
@@ -38,25 +40,6 @@ const SellerAllCatFood = () => {
       alert('Failed to delete. Please try again.');
     },
   });
-
-  // EDIT Mutation (Example: for toggling name or other property)
-  // const editMutation = useMutation({
-  //   mutationFn: async ({ foodId, updatedData }) => {
-  //     return await axios.patch(`http://localhost:3000/seller/catfood/${foodId}`, updatedData);
-  //   },
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries(['seller-foods', user?.email]);
-  //   },
-  //   onError: (error) => {
-  //     console.error('Edit failed:', error);
-  //     alert('Failed to edit. Please try again.');
-  //   },
-  // });
-
-  // const handleEdit = (food) => {
-  //   const updatedData = { name: prompt("New name:", food.name) || food.name };
-  //   editMutation.mutate({ foodId: food._id, updatedData });
-  // };
 
   const handleDelete = (foodId) => {
   Swal.fire({

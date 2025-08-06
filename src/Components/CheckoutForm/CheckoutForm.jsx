@@ -252,13 +252,15 @@ import Swal from 'sweetalert2';
 import { useEffect, useState } from 'react';
 import './checkoutform.css';
 import { useNavigate } from 'react-router';
+import useAxiosSecure from '../../hook/useAxiosSecure';
 
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
   const elements = useElements();
    const navigate = useNavigate();
   const { user } = useAuth();
-console.log("gyu", order._id)
+const axiosSecure=useAxiosSecure()
+
   const [quantity, setQuantity] = useState(order.quantity || 1);
   const [deliveryCharge, setDeliveryCharge] = useState(order.deliveryCharge || 0);
   const [total, setTotal] = useState(order.totalAmount || 0);
@@ -267,7 +269,7 @@ console.log("gyu", order._id)
 
   const mutation = useMutation({
     mutationFn: async (paymentData) => {
-      const res = await axios.post('http://localhost:3000/payments', paymentData);
+      const res = await axiosSecure.post('/payments', paymentData);
       return res.data;
     },
     onSuccess: () => {
@@ -293,7 +295,7 @@ console.log("gyu", order._id)
     if (!stripe || !elements) return;
 
     try {
-      const { data: clientSecret } = await axios.post('http://localhost:3000/create-payment-intent', {
+      const { data: clientSecret } = await axiosSecure.post('/create-payment-intent', {
         quantity, orderId: order._id,deliveryCharge
       });
 console.log(clientSecret.clientSecret)

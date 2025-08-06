@@ -4,17 +4,18 @@ import React, { useState } from 'react';
 import useAuth from '../../../hook/useAuth';
 import OrderTable from '../../../Components/Table/OrderTable';
 import Loaer from '../../../Components/Loaer/Loaer';
+import useAxiosSecure from '../../../hook/useAxiosSecure';
 
 const ApproveOrde = () => {
   const { user } = useAuth();
   const [page, setPage] = useState(1);
   const limit = 10;
   const queryClient = useQueryClient();
-
+const axiosSecure=useAxiosSecure()
   const { data , isLoading } = useQuery({
     queryKey: ['orders', user?.email, page],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/sellerorder/${user?.email}?status=Pending`, {
+      const res = await axiosSecure.get(`/sellerorder/${user?.email}?status=Pending`, {
         params: { page, limit },
       });
       return res.data;
@@ -25,7 +26,7 @@ const ApproveOrde = () => {
  console.log(data)
   const approveOrRejectOrder = useMutation({
     mutationFn: async ({ orderId, status }) => {
-      return axios.patch(`http://localhost:3000/orders/${orderId}`, { status });
+      return axiosSecure.patch(`/orders/${orderId}`, { status });
     },
     onSuccess: () => {
       

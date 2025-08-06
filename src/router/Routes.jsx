@@ -24,6 +24,8 @@ import ConfirmOrder from "../Pages/Dasboard/userPage/ConfirmOrder";
 import ApproveOrde from "../Pages/Seller/ApproveOrde/ApproveOrde";
 import SellerAllCats from "../Pages/Seller/AllCat/AllCats";
 import SellerAllCatFood from "../Pages/Seller/AllCatFood/SellerAllCatFood";
+import SellerApprove from "../Pages/Admin/AproveSeller/SellerApprove";
+import AllUsers from "../Pages/Admin/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -61,8 +63,13 @@ const router = createBrowserRouter([
       {path:'seller/add-category',Component:AddCatForm},
       {path:'seller/add-category-food',Component:AddCatFoodForm},
       {path:'seller/all-categories',Component:SellerAllCats},
-      {path:'seller/all-category-food',Component:SellerAllCatFood}
+      {path:'seller/all-category-food',Component:SellerAllCatFood},
+
+
+      {path:'sellersapprove',Component:SellerApprove},
+      {path:'allUsers',Component:AllUsers}
     ]
+
    }
 ]);
 

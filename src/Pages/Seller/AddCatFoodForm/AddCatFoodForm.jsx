@@ -8,10 +8,11 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import useAxiosSecure from '../../../hook/useAxiosSecure';
 
 const AddCatFoodForm = () => {
   const { user, loading } = useAuth();
-
+const axiosSecure =useAxiosSecure()
   const {
     register,
     handleSubmit,
@@ -24,14 +25,14 @@ const AddCatFoodForm = () => {
     queryKey: ['user'],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:3000/user/${user?.email}`);
+      const { data } = await axiosSecure.get(`/user/${user?.email}`);
       return data;
     },
   });
 
   const addMutation = useMutation({
     mutationFn: async (formData) => {
-      const res = await axios.post('http://localhost:3000/catfoods', formData);
+      const res = await axiosSecure.post('/catfoods', formData);
       return res.data;
     },
     onSuccess: () => {

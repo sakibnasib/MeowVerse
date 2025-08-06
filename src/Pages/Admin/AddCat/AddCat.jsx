@@ -4,8 +4,10 @@ import useAuth from '../../../hook/useAuth';
 import { imageUpload } from '../../../api/utils';
 import Loaer from '../../../Components/Loaer/Loaer';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hook/useAxiosSecure';
+
+
 
 const catBreeds = [
   'Persian',
@@ -26,7 +28,7 @@ const catBreeds = [
 
 const AddCatForm = () => {
   const { user, loading } = useAuth();
-
+const axiosSecure =useAxiosSecure()
   const {
     register,
     handleSubmit,
@@ -40,14 +42,14 @@ const {data:sellerdata=[],isLoading} = useQuery({
   queryKey:['user'],
    enabled: !loading && !!user?.email,
   queryFn:async ()=>{
-    const {data}=await axios.get(`http://localhost:3000/user/${user?.email}`)
+    const {data}=await axiosSecure.get(`/user/${user?.email}`)
     return data
   }
 })
 
 const addMutation=useMutation({
   mutationFn:async(formData)=>{
-     const res = await axios.post('http://localhost:3000/cats', formData)
+     const res = await axiosSecure.post('/cats', formData)
       return res.data
   },
    onSuccess: () => {

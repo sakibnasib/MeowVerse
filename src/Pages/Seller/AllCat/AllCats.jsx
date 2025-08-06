@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import EditCatModal from '../../../Components/Modal/EditCatModal';
+import useAxiosSecure from '../../../hook/useAxiosSecure';
 
 const SellerAllCats = () => {
   const { user } = useAuth();
@@ -11,12 +12,12 @@ const SellerAllCats = () => {
   const [editingCat, setEditingCat] = useState(null);
   const limit = 10;
   const queryClient = useQueryClient();
-
+const axiosSecure=useAxiosSecure()
   // Fetch cats 
   const { data = {}, isLoading } = useQuery({
     queryKey: ['seller-cats', user?.email, page],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/seller/allcats/${user?.email}`, {
+      const res = await axiosSecure.get(`/seller/allcats/${user?.email}`, {
         params: { page, limit },
       });
       return res.data;
@@ -28,7 +29,7 @@ const SellerAllCats = () => {
   // Delete mutation
   const deleteMutation = useMutation({
     mutationFn: async (catId) => {
-      return axios.delete(`http://localhost:3000/seller/cats/${catId}`);
+      return axiosSecure.delete(`/seller/cats/${catId}`);
     },
     onSuccess: () => {
       Swal.fire('Deleted!', 'The cat has been deleted.', 'success');
@@ -56,7 +57,7 @@ const SellerAllCats = () => {
   };
 const updateCatMutation = useMutation({
   mutationFn: async ({ catId, updatedData }) => {
-    const res = await axios.patch(`http://localhost:3000/seller/cats/${catId}`, updatedData);
+    const res = await axiosSecure.patch(`/seller/cats/${catId}`, updatedData);
     return res.data;
   },
   onSuccess: () => {

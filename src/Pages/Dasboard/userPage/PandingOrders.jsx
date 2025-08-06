@@ -7,6 +7,7 @@ import useOrders from '../../../api/useOrders';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hook/useAxiosSecure';
 
 const PandingOrders = () => {
     const { user } = useAuth();
@@ -15,7 +16,7 @@ const PandingOrders = () => {
   const limit = 8;
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-
+const axiosSecure=useAxiosSecure()
    const { data =[], isLoading } = useOrders(user?.email, 'pending', page, limit);
   const totalPages = Math.ceil((data?.totalCount || 0) / limit);
 
@@ -29,7 +30,7 @@ const PandingOrders = () => {
     setSelectedOrder(null);
   };
 const cancelMutation=useMutation({
-  mutationFn:async(id)=>await axios.delete(`http://localhost:3000/order/${id}`),
+  mutationFn:async(id)=>await axiosSecure.delete(`/order/${id}`),
   onSuccess:()=>{
      Swal.fire('Cancelled!', 'The Order been cancelled.', 'success');
       queryClient.invalidateQueries(['data']);

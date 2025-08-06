@@ -4,13 +4,14 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import { imageUpload } from '../../api/utils';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hook/useAxiosSecure';
 
 const EditCatFoodModal = ({ closeModal, food, isOpen }) => {
   const queryClient = useQueryClient();
   const fileInputRef = useRef(null);
+  const axiosSecure=useAxiosSecure()
 
   const {
     register,
@@ -34,8 +35,7 @@ const EditCatFoodModal = ({ closeModal, food, isOpen }) => {
 
   const updateFoodMutation = useMutation({
     mutationFn: async (updatedData) => {
-         console.log(updatedData)
-      const res = await axios.patch(`http://localhost:3000/seller/foods/${food._id}`, updatedData);
+      const res = await axiosSecure.patch(`/seller/foods/${food._id}`, updatedData);
       return res.data;
     },
     onSuccess: () => {
@@ -67,7 +67,7 @@ const EditCatFoodModal = ({ closeModal, food, isOpen }) => {
       expiryDate: data.expiryDate?.toISOString(),
       imageUrls: [imageUrl],
     };
-
+console.log(payload)
     updateFoodMutation.mutate(payload);
  
   };

@@ -319,12 +319,13 @@ import {
   FaChevronRight,
 } from 'react-icons/fa';
 import CatFoodCard from '../../Components/CatFoodCard/CatFoodCard';
+import useAxiosSecure from '../../hook/useAxiosSecure';
 
 const AllFoods = () => {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('');
   const [page, setPage] = useState(1);
-
+const axiosSecure =useAxiosSecure()
   const limit = 8;
 
   const {
@@ -334,7 +335,7 @@ const AllFoods = () => {
   } = useQuery({
     queryKey: ['allfoods', search, sort, page],
     queryFn: async () => {
-      const { data } = await axios.get('http://localhost:3000/allfoods', {
+      const { data } = await  axiosSecure.get('/allfoods', {
         params: { search, sort, page, limit },
       });
       return data;

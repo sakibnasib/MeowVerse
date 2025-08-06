@@ -6,6 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
+import useAxiosSecure from '../../hook/useAxiosSecure';
 
 // Division & District Data
 const divisionsWithDistricts = {
@@ -21,7 +22,7 @@ const divisionsWithDistricts = {
 
 const Sellerform = () => {
   const { user, loading } = useAuth();
-
+const axiosSecure =useAxiosSecure()
   const {
     register,
     handleSubmit,
@@ -45,7 +46,7 @@ const Sellerform = () => {
 
   const onSubmit = (data) => {
     console.log('Form Submitted:', data);
-    axios.patch(`http://localhost:3000/user/applied/${user?.email}`, data)
+    axiosSecure.patch(`/user/applied/${user?.email}`, data)
       .then(response => {
         console.log('Success:', response.data);
         alert('Form submitted successfully!');
