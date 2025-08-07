@@ -35,17 +35,17 @@ const AdminMenu = () => {
                 <Store size={20} />
                 <span>All Sellers</span>
             </NavLink>
-<NavLink to="/dashboardn/orders/pending" className={linkClass}>
+<NavLink to="/dashboard/adminpending" className={linkClass}>
                 <Clock size={20} />
                 <span>All Pending Orders</span>
             </NavLink>
 
-            <NavLink to="/dashboard/orders/approved" className={linkClass}>
+            <NavLink to="/dashboard/adminapproved" className={linkClass}>
                 <CheckCircle size={20} />
                 <span>All Approved Orders</span>
             </NavLink>
 
-            <NavLink to="/dashboard/orders/confirmed" className={linkClass}>
+            <NavLink to="/dashboard/adminconfirmed" className={linkClass}>
                 <ClipboardCheck size={20} />
                 <span>All Confirmed</span>
             </NavLink>

@@ -8,19 +8,6 @@ const ConfirmOrder = () => {
     const {user}=useAuth()
   const limit = 8;
   
-
-//   const { data, isLoading } = useQuery({
-//     queryKey: ['orders', user?.email, page],
-//     queryFn: async () => {
-//       const res = await axios.get(`http://localhost:3000/order/${user?.email}?status=confirmed`, {
-//         params: { page, limit },
-//       });
-//       return res.data;
-//     },
-//     enabled: !!user?.email,
-//     keepPreviousData: true,
-//   });
-
   const { data =[], isLoading } = useOrders(user?.email, 'confirmed', page, limit);
 const totalPages = Math.ceil((data?.totalCount || 0) / limit);
 if(isLoading) return <Loaer/>

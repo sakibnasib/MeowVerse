@@ -27,6 +27,13 @@ import SellerAllCatFood from "../Pages/Seller/AllCatFood/SellerAllCatFood";
 import SellerApprove from "../Pages/Admin/AproveSeller/SellerApprove";
 import AllUsers from "../Pages/Admin/AllUsers/AllUsers";
 import Allsellers from "../Pages/Admin/Allsellers/Allsellers";
+import AdminPendingorder from "../Pages/Admin/AdminPendingOrder/AdminPendingorder";
+import AdminapprovedOrder from "../Pages/Admin/AdminShowAllApproved/AdminapprovedOrder";
+import AdminConfirmed from "../Pages/Dasboard/Adminconfirmed/AdminConfirmed";
+import PrivateRouter from "./PrivateRouter";
+import SellerRouter from "./SellerRouter";
+import UserRouter from "./UserRouter";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -49,27 +56,65 @@ const router = createBrowserRouter([
       {path:"register", Component:Register}
     ]
   },
-  {path:'/dashboard', Component:DashboardLayout,
+  {path:'/dashboard', element:
+  <PrivateRouter>
+<DashboardLayout/>
+  </PrivateRouter>  ,
     children:[
-      // {path: 'AddCatForm',Component:AddCatForm},
-      {path:'Sellerform',Component:Sellerform},
-      {path:'addCatFoodForm',Component: AddCatFoodForm},
-      {path:'PandingOrders',Component:PandingOrders},
-      {path:'approvedOrders',Component:ApprovedOrders},
-      {path:'confirm-order',Component:ConfirmOrder},
-      {path:'payment',Component:PaymentPage},
+      {path: 'AddCatForm',Component:AddCatForm},
+      {path:'Sellerform',element:<UserRouter>
+        <Sellerform/>
+      </UserRouter>},
+     {path:'addCatFoodForm',Component: AddCatFoodForm},
+      {path:'PandingOrders',element:<UserRouter>
+        <PandingOrders/>
+      </UserRouter>},
+      {path:'approvedOrders',element:<UserRouter>
+        <ApprovedOrders/>
+      </UserRouter>},
+      {path:'confirm-order',element:<UserRouter>
+        <ConfirmOrder/>
+      </UserRouter>},
+      {path:'payment',element:<UserRouter>
+        <PaymentPage/>
+      </UserRouter>},
 
 
-      {path:"sellerApproveOrde",Component:ApproveOrde},
-      {path:'seller/add-category',Component:AddCatForm},
-      {path:'seller/add-category-food',Component:AddCatFoodForm},
-      {path:'seller/all-categories',Component:SellerAllCats},
-      {path:'seller/all-category-food',Component:SellerAllCatFood},
+      {path:"sellerApproveOrde",element:<SellerRouter>
+        <ApproveOrde/>
+      </SellerRouter>},
+      {path:'seller/add-category',element:<SellerRouter>
+        <AddCatForm/>
+      </SellerRouter>},
+      {path:'seller/add-category-food',element:<SellerRouter>
+        <AddCatFoodForm/>
+      </SellerRouter>},
+      {path:'seller/all-categories',element:<SellerRouter>
+        <SellerAllCats/>
+      </SellerRouter>},
+      {path:'seller/all-category-food',element:<SellerRouter>
+        <SellerAllCatFood/>
+      </SellerRouter>},
 
 
-      {path:'sellersapprove',Component:SellerApprove},
-      {path:'allUsers',Component:AllUsers},
-      {path:'allsellers',Component:Allsellers}
+      {path:'sellersapprove',element:<AdminRoute>
+        <SellerApprove/>
+      </AdminRoute>},
+      {path:'allUsers',element:<AdminRoute>
+        <AllUsers/>
+      </AdminRoute>},
+      {path:'allsellers',element:<AdminRoute>
+        <Allsellers/>
+      </AdminRoute>},
+      {path:'adminpending',element:<AdminRoute>
+        <AdminPendingorder/>
+      </AdminRoute>},
+      {path:'adminapproved',element:<AdminRoute>
+        <AdminapprovedOrder/>
+      </AdminRoute>},
+      {path:'adminconfirmed',element:<AdminRoute>
+        <AdminConfirmed/>
+      </AdminRoute>}
     ]
 
    }

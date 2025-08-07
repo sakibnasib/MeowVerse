@@ -101,7 +101,7 @@ const SellerApprove = () => {
     <div className="p-4">
       <h2 className="text-xl font-semibold mb-4">Seller Applications</h2>
       <div className="overflow-x-auto">
-        <table className="table w-full table-zebra">
+        <table className="table w-full table-zebra ">
           <thead>
             <tr>
               <th>#</th>

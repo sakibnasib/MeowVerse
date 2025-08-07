@@ -1,64 +1,146 @@
-import React, { useState } from "react";
-import { FaCat, FaHome, FaImage, FaBlog, FaClipboardList, FaUser } from "react-icons/fa";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import Logo from "../Components/Logo/Logo";
+// import React, { useState } from "react";
+// import { FaCat, FaHome, FaImage, FaBlog, FaClipboardList, FaUser } from "react-icons/fa";
+// import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+// import Logo from "../Components/Logo/Logo";
 // import UserMenu from "../Components/Menu/UserMenu/UserMenu";
-import { Outlet } from "react-router";
-import AdminMenu from "../Components/Menu/AdminMenu/AdminMenu";
+// import { Outlet } from "react-router";
+// import AdminMenu from "../Components/Menu/AdminMenu/AdminMenu";
+// import useRole from "../hook/useRole";
+// import { Loader } from "lucide-react";
 // import SellerMenu from "../Components/Menu/SellerMenu/SellerMenu";
 
-const SidebarLink = ({ icon: Icon, label }) => (
-  <div className="flex items-center gap-3 text-gray-700 hover:text-pink-600 px-4 py-2 transition">
-    <Icon className="text-lg" />
-    <span>{label}</span>
-  </div>
-);
+// const SidebarLink = ({ icon: Icon, label }) => (
+ 
+//   <div className="flex items-center gap-3 text-gray-700 hover:text-pink-600 px-4 py-2 transition">
+//     <Icon className="text-lg" />
+//     <span>{label}</span>
+//   </div>
+// );
+
+// const DashboardLayout = () => {
+//   const [sidebarOpen, setSidebarOpen] = useState(false);
+//  const [role , isRoleLoading]=useRole()
+// if(isRoleLoading) return <Loader/>
+
+//   return (
+//     <div className="flex min-h-screen ">
+//       {/* Sidebar */}
+//       <div
+//         className={`bg-gradient-to-br from-pink-50 via-white to-purple-50 backdrop-blur-md shadow-md w-64 p-6 space-y-6 fixed top-0 left-0 h-full z-30 transform ${
+//           sidebarOpen ? "translate-x-0" : "-translate-x-full"
+//         } transition-transform duration-300 md:translate-x-0`}
+//       >
+//         <div className="text-2xl font-bold text-pink-600 flex items-center gap-2">
+//          <Logo/>
+//         </div>
+//         <hr className=" text-pink-600"/>
+//         <nav className="space-y-2">
+//           {role === 'admin' && <AdminMenu/>}
+//             {role === 'seller' && <SellerMenu/>}
+//            {role === 'user' && <UserMenu/>}
+          
+//         </nav>
+//       </div>
+
+//       {/* Overlay for mobile */}
+//       {sidebarOpen && (
+//         <div
+//           className="fixed inset-0 bg-black bg-opacity-30 z-20 md:hidden"
+//           onClick={() => setSidebarOpen(false)}
+//         />
+//       )}
+
+//       {/* Main content */}
+//       <div className="flex-1 md:ml-64 flex flex-col">
+//         {/* Topbar */}
+//         <header className=" shadow-md flex items-center justify-between p-4 md:hidden">
+//  <button
+//             className="text-2xl md:hidden text-pink-600"
+//             onClick={() => setSidebarOpen(!sidebarOpen)}
+//           >
+//             {sidebarOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
+//           </button>
+//           <Logo/>
+//         </header>
+       
+
+//         <main className="flex-1 overflow-y-auto"><Outlet/></main>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DashboardLayout;
+
+import React, { useState } from "react";
+import {
+  AiOutlineMenu,
+  AiOutlineClose,
+} from "react-icons/ai";
+import Logo from "../Components/Logo/Logo";
+import UserMenu from "../Components/Menu/UserMenu/UserMenu";
+import AdminMenu from "../Components/Menu/AdminMenu/AdminMenu";
+import SellerMenu from "../Components/Menu/SellerMenu/SellerMenu";
+import { Outlet } from "react-router";
+import useRole from "../hook/useRole";
+import { Loader } from "lucide-react";
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [role, isRoleLoading] = useRole();
+
+  if (isRoleLoading) {
+    return (
+    
+        <Loader  />
+    
+    );
+  }
 
   return (
     <div className="flex min-h-screen ">
       {/* Sidebar */}
       <div
-        className={`bg-gradient-to-br from-pink-50 via-white to-purple-50 backdrop-blur-md shadow-md w-64 p-6 space-y-6 fixed top-0 left-0 h-full z-30 transform ${
+        className={`bg-gradient-to-br from-pink-50 via-white to-purple-50 backdrop-blur-md shadow-md w-64 p-6 space-y-6 fixed top-0 left-0 h-full z-30 transform transition-transform duration-300 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 md:translate-x-0`}
+        } md:translate-x-0`}
       >
-        <div className="text-2xl font-bold text-pink-600 flex items-center gap-2">
-         <Logo/>
+        <div className="">
+          <Logo />
         </div>
-        <hr className=" text-pink-600"/>
+        <hr className="border-pink-600" />
         <nav className="space-y-2">
-          <AdminMenu/>
-        {/* <UserMenu/> */}
-        {/* <SellerMenu/> */}
+          {role === "admin" && <AdminMenu />}
+          {role === "seller" && <SellerMenu />}
+          {role === "user" && <UserMenu />}
         </nav>
       </div>
 
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-20 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-30 z-20  md:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Main content */}
-      <div className="flex-1 md:ml-64 flex flex-col">
-        {/* Topbar */}
-        <header className=" shadow-md flex items-center justify-between p-4 md:hidden">
- <button
-            className="text-2xl md:hidden text-pink-600"
+      <div className="flex-1 flex flex-col md:ml-64">
+        {/* Topbar for Mobile */}
+        <header className="shadow-md flex items-center justify-between px-2 md:hidden">
+          <button
+            className="text-2xl text-pink-600"
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
             {sidebarOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
           </button>
-          <Logo/>
+          <Logo />
         </header>
-       
 
-        <main className="flex-1 "><Outlet/></main>
+        {/* Main Page Outlet */}
+        <main className="flex-1 overflow-y-auto ">
+          <Outlet />
+        </main>
       </div>
     </div>
   );

@@ -144,10 +144,10 @@ const DailyMeowSection = () => {
                 </p>
                 
                 {/* Read More Button */}
-                <button className="group/btn bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-2 rounded-full text-sm font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                {/* <button className="group/btn bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-2 rounded-full text-sm font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center gap-2">
                   Read More
                   <FaArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                </button> */}
               </div>
             </motion.div>
           ))}
