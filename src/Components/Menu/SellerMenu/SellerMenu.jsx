@@ -18,7 +18,7 @@ const SellerMenu = () => {
   return (
     <div className=" space-y-2">
       <nav className="space-y-2">
-        <NavLink to="/seller/profile" className={navLinkClass}>
+        <NavLink to="/dashboard" className={navLinkClass}>
           <User size={18} />
           <span>Profile</span>
         </NavLink>

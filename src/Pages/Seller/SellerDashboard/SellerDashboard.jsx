@@ -53,12 +53,12 @@
 
 
 import React from 'react';
-import useAuth from '../hook/useAuth';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../../hook/useAxiosSecure';
 import Loaer from '../../../Components/Loaer/Loaer';
 import OrderStatusChart from './OrderStatusChart';
 import EarningsChart from './EarningsChart';
+import useAxiosSecure from '../../../hook/useAxiosSecure';
+import useAuth from '../../../hook/useAuth';
 
 const SellerDashboard = () => {
   const { user } = useAuth();

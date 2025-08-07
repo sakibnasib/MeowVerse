@@ -3,6 +3,7 @@ import useRole from '../../hook/useRole';
 import Loaer from '../../Components/Loaer/Loaer';
 import SellerDashboard from '../Seller/SellerDashboard/SellerDashboard';
 import UserDashboard from '../Dasboard/userPage/UserDashboard/UserDashboard';
+import AdminDashboard from '../Admin/AdminDashboard/AdminDashboard';
 
 const Profile = () => {
     const [role ,isRoleLoading]=useRole()
@@ -11,11 +12,11 @@ const Profile = () => {
    if (role === 'seller') {
   return <SellerDashboard/>;
   }
-  if (role === 'user ') {
+  if (role === 'user') {
   return <UserDashboard/>;
   }
-  if (role === 'Admin') {
-  return <SellerDashboard/>;
+  if (role === 'admin') {
+  return <AdminDashboard/>;
   }
 
 };

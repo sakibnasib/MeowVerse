@@ -34,6 +34,7 @@ import PrivateRouter from "./PrivateRouter";
 import SellerRouter from "./SellerRouter";
 import UserRouter from "./UserRouter";
 import AdminRoute from "./AdminRoute";
+import Profile from "../Pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,7 @@ const router = createBrowserRouter([
 <DashboardLayout/>
   </PrivateRouter>  ,
     children:[
+      {index:true,Component:Profile},
       {path: 'AddCatForm',Component:AddCatForm},
       {path:'Sellerform',element:<UserRouter>
         <Sellerform/>

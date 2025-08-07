@@ -1,7 +1,5 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../hook/useAxiosSecure';
-import useAuth from '../hook/useAuth';
 import { Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -9,7 +7,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import Loaer from '../../Components/Loaer/Loaer';
+import useAxiosSecure from '../../../../hook/useAxiosSecure';
+import Loaer from '../../../../Components/Loaer/Loaer';
+import useAuth from '../../../../hook/useAuth';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
