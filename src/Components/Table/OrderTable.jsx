@@ -31,9 +31,18 @@ const OrderTable = ({ data, onAction }) => {
             </thead>
             <tbody className="divide-y">
               {data?.map((order, index) => {
-                const isCat = order.Type === 'Cat';
-                const name = isCat ? order.catName : order.foodName;
-                const brand = isCat ? order.catBreed : order.foodBand;
+                // const isCat = order.Type === 'Cat';
+                // const name = isCat ? order.catName.trim().split(/\s+/).slice(0, 15).join(' ') + '...' : order.foodName;
+                // const brand = isCat ? order.catBreed.trim().split(/\s+/).slice(0, 15).join(' ') + '...' : order.foodBand;
+const isCat = order.Type === 'Cat';
+
+  const name = isCat
+    ? `${(order.catName || '').trim().split(/\s+/).slice(0, 15).join(' ')}...`
+    : `${(order.foodName || '').trim().split(/\s+/).slice(0, 15).join(' ')}...`;
+
+  const brand = isCat
+    ? `${(order.catBreed || '').trim().split(/\s+/).slice(0, 15).join(' ')}...`
+    : `${(order.foodBand || '').trim().split(/\s+/).slice(0, 15).join(' ')}...`;
 
                 return (
                   <tr

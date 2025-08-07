@@ -83,19 +83,17 @@ import AdminMenu from "../Components/Menu/AdminMenu/AdminMenu";
 import SellerMenu from "../Components/Menu/SellerMenu/SellerMenu";
 import { Outlet } from "react-router";
 import useRole from "../hook/useRole";
-import { Loader } from "lucide-react";
+import Loaer from "../Components/Loaer/Loaer";
+
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [role, isRoleLoading] = useRole();
 
-  if (isRoleLoading) {
-    return (
+  if (isRoleLoading)  return <Loaer  />
     
-        <Loader  />
-    
-    );
-  }
+   
+  
 
   return (
     <div className="flex min-h-screen ">

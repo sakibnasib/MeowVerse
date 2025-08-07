@@ -11,6 +11,7 @@ const UserMenu = () => {
       <nav className="flex flex-col space-y-2">
         <NavLink
           to="/dashboard"
+          end
           className={({ isActive }) =>
             `${linkClass} ${isActive ? activeClass : ''}`
           }

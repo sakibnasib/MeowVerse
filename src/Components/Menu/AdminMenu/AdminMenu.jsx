@@ -18,7 +18,7 @@ const AdminMenu = () => {
 
     return (
         <nav className="space-y-2  w-full max-w-xs  ">
-            <NavLink to="/dashboard" className={linkClass}>
+            <NavLink to="/dashboard" end className={linkClass}>
                 <UserCircle size={20} />
                 <span>Profile</span>
             </NavLink>

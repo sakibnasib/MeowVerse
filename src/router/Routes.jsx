@@ -63,7 +63,6 @@ const router = createBrowserRouter([
   </PrivateRouter>  ,
     children:[
       {index:true,Component:Profile},
-      {path: 'AddCatForm',Component:AddCatForm},
       {path:'Sellerform',element:<UserRouter>
         <Sellerform/>
       </UserRouter>},
