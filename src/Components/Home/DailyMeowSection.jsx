@@ -50,7 +50,7 @@ const DailyMeowSection = () => {
             <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-3xl mr-4">
               📰
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
               Daily Meow
             </h2>
           </div>

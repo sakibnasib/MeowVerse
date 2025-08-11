@@ -1,6 +1,5 @@
 // useOrders.js
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import useAxiosSecure from '../hook/useAxiosSecure';
 
 const useOrders = (email, status, page, limit = 8) => {

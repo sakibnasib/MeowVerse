@@ -4,15 +4,17 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import Loaer from '../Loaer/Loaer';
 import CatAdopt from '../Modal/CatAdopt';
+import useRole from '../../hook/useRole';
 
 const CatDetails = () => {
   const { id } = useParams();
+const [role , isRoleLoading]=useRole()
 
     const [isOpen, setIsOpen] = useState(false)
   const { data: cat, isLoading, error } = useQuery({
     queryKey: ['cat', id],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/cats/${id}`);
+      const res = await axios.get(`https://meow-verse-server-side.vercel.app/cats/${id}`);
       return res.data;
     },
   });
@@ -27,11 +29,12 @@ const CatDetails = () => {
     const closeModal = () => {
     setIsOpen(false)
   }
+  if(isRoleLoading) return <Loaer/>
   return (
-    <div className="w-full max-w-2xl mx-auto min-h-screen bg-gradient-to-br from-pink-50 to-white pb-16 px-4">
+    <div className="w-11/12  mx-auto min-h-screen bg-gradient-to-br from-pink-50 to-white pb-16 px-4">
       {/* Main Image */}
       <div className="w-full h-64 sm:h-80 rounded-2xl overflow-hidden shadow mb-6 flex items-center justify-center bg-white">
-        <img src={mainImg || cat.imageUrls?.[0]} alt={cat.name} className="w-full h-full object-cover" />
+        <img src={mainImg || cat.imageUrls?.[0]} alt={cat.name} className="w-full h-full object-fit" />
       </div>
       {/* Gallery Thumbnails */}
       {cat.imageUrls?.length > 1 && (
@@ -55,7 +58,8 @@ const CatDetails = () => {
           <span>Age: <span className="font-semibold text-gray-800">{cat.age}m</span></span>
           <span>Color: <span className="font-semibold text-gray-800">{cat.color}</span></span>
           <span>Weight: <span className="font-semibold text-gray-800">{cat.weight}kg</span></span>
-          <span>Vaccinated: <span className="font-semibold text-gray-800">{cat.vaccinated ? 'Yes' : 'No'}</span></span>
+          <span>Vaccinated: <span className="font-semibold text-gray-800">{cat.vaccinated }</span></span>
+          <span>Quantity: <span className="font-semibold text-gray-800">{cat.quantity }</span></span>
         </div>
         <div className="flex items-center gap-4 mt-2">
           <span className="text-xl font-bold text-pink-600">৳{cat.price}</span>
@@ -79,10 +83,23 @@ const CatDetails = () => {
       </div>
       {/* CTA Button */}
       <div className="flex justify-center">
-        <button
-        onClick={() => setIsOpen(true)} className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow transition-colors duration-200">
-          Adopt Now
-        </button>
+      {role !== 'user' ? (
+  <h1 className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow transition-colors duration-200">
+    Only User Can AddToCart
+  </h1>
+) : cat.quantity == 0 ? (
+  <h1 className="bg-red-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow">
+    Stock Out
+  </h1>
+) : (
+  <button
+    onClick={() => setIsOpen(true)}
+    className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow transition-colors duration-200"
+  >
+    Adopt Now
+  </button>
+)}
+
       </div>
       <CatAdopt
                 cat={cat}

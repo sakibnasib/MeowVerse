@@ -12,7 +12,7 @@
 //   const { data, isLoading } = useQuery({
 //     queryKey: ['orders', user?.email, page],
 //     queryFn: async () => {
-//       const res = await axios.get(`http://localhost:3000/order/${user?.email}?status=pending`, {
+//       const res = await axios.get(`https://meow-verse-server-side.vercel.app/order/${user?.email}?status=pending`, {
 //         params: {
 //           page,
 //           limit,

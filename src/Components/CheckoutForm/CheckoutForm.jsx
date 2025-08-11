@@ -1,4 +1,3 @@
-
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useMutation } from '@tanstack/react-query';
 import useAuth from '../../hook/useAuth';
@@ -35,6 +34,23 @@ const axiosSecure=useAxiosSecure()
       Swal.fire('Error', 'Payment failed or incomplete.', 'error');
     },
   });
+// quntity
+ const quntitys = useMutation({
+    mutationFn: async ( quantity) => {
+      const res = await axiosSecure.patch(`/quantity-update/${order?.orderId}`, {
+  type: order?.Type,
+  quantity
+} );
+      return res.data;
+    },
+    onSuccess: () => {
+      Swal.fire('Success',  'success');;
+    },
+    onError: () => {
+      Swal.fire('Error', 'Payment failed or incomplete.', 'error');
+    },
+  });
+
 
   useEffect(() => {
     const basePrice = order?.singlepicePrice|| order.totalAmount - order.deliveryCharge;
@@ -52,7 +68,6 @@ const axiosSecure=useAxiosSecure()
       const { data: clientSecret } = await axiosSecure.post('/create-payment-intent', {
         quantity, orderId: order._id,deliveryCharge
       });
-console.log(clientSecret.clientSecret)
       const result = await stripe.confirmCardPayment(clientSecret.clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
@@ -75,6 +90,7 @@ console.log(clientSecret.clientSecret)
           transactionId: result.paymentIntent.id,
           sellerEmail:order?.sellerEmail
         });
+quntitys.mutate( quantity)
       }
     } catch (err) {
       setError('Payment processing failed.');

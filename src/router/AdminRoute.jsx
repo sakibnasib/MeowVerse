@@ -1,7 +1,8 @@
 import React from 'react';
 import useRole from '../hook/useRole';
-import Loaer from '../Components/Loaer/Loaer';
+
 import { Navigate } from 'react-router';
+import Loaer from '../Components/Loaer/Loaer';
 
 
 

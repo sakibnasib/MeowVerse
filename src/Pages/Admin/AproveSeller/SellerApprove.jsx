@@ -55,17 +55,19 @@ import React, { useState } from 'react';
 import useAxiosSecure from '../../../hook/useAxiosSecure';
 import Loaer from '../../../Components/Loaer/Loaer';
 import Swal from 'sweetalert2';
+import useAuth from '../../../hook/useAuth';
 
 const SellerApprove = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const {user}=useAuth()
   const [page, setPage] = useState(1);
   const limit = 10;
 
   const { data, isLoading } = useQuery({
     queryKey: ['applied-sellers', page],
     queryFn: async () => {
-      const res = await axiosSecure.get('/allseler/applied', {
+      const res = await axiosSecure.get(`/allseler/applied/${user?.email}`, {
         params: { page, limit },
       });
       return res.data;

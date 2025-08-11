@@ -54,6 +54,7 @@ const addMutation=useMutation({
   },
    onSuccess: () => {
       Swal.fire('Updated', 'Cat added successfully!', 'success')
+      
     },
     onError: () => {
       Swal.fire('Error', 'Failed to add cat.', 'error')

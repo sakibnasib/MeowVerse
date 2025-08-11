@@ -19,7 +19,7 @@ const AllCats = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['allcats', search, sort, page],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/allcats`, {
+      const res = await axios.get(`https://meow-verse-server-side.vercel.app/allcats`, {
         params: { search, sort, page, limit },
       });
       return res.data;
@@ -41,7 +41,7 @@ const AllCats = () => {
       <div
         className="relative mb-8 rounded-xl overflow-hidden"
         style={{
-          backgroundImage: `url('https://i.ibb.co/7JpdjKbq/10454317.png')`, // Replace with a cat-themed background
+          backgroundImage: `url('https://i.ibb.co/7JpdjKbq/10454317.png')`, 
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           minHeight: '350px',

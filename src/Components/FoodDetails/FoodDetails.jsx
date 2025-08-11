@@ -4,14 +4,17 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import Loaer from '../Loaer/Loaer';
 import CatFoodAdopt from '../Modal/CatFoodAdopt';
+import useRole from '../../hook/useRole';
 
 const FoodDetails = () => {
   const { id } = useParams();
+   const [role , isRoleLoading]=useRole()
+
   const [isOpen, setIsOpen] = useState(false)
   const { data: food, isLoading, error } = useQuery({
     queryKey: ['food', id],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/foods/${id}`);
+      const res = await axios.get(`https://meow-verse-server-side.vercel.app/foods/${id}`);
       return res.data;
     },
   });
@@ -23,11 +26,12 @@ const FoodDetails = () => {
   const closeModal = () => {
     setIsOpen(false)
   }
+  if(isRoleLoading) return <Loaer/>
   return (
-    <div className="w-full max-w-2xl mx-auto min-h-screen bg-gradient-to-br from-pink-50 to-white pb-16 px-4">
+    <div className="w-11/12  mx-auto min-h-screen bg-gradient-to-br from-pink-50 to-white pb-16 px-4">
       {/* Main Image */}
-      <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden shadow mb-6 flex items-center justify-center bg-white">
-        <img src={mainImg || food.imageUrls?.[0]} alt={food.name} className="w-full h-full object-cover" />
+      <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden shadow mb-6  flex items-center justify-center bg-white">
+        <img src={mainImg || food.imageUrls?.[0]} alt={food.name} className="w-full h-full object-fit" />
       </div>
       {/* Thumbnails */}
       {food.imageUrls?.length > 1 && (
@@ -90,11 +94,22 @@ const FoodDetails = () => {
       )}
       {/* CTA Button */}
       <div className="flex justify-center">
-        <button
-        onClick={() => setIsOpen(true)}
-         className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow transition-colors duration-200">
-          Add to Cart
-        </button>
+         {role !== 'user' ? (
+  <h1 className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow transition-colors duration-200">
+    Only User Can AddToCart
+  </h1>
+) : food.quantity == 0 ? (
+  <h1 className="bg-red-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow">
+    Stock Out
+  </h1>
+) : (
+  <button
+    onClick={() => setIsOpen(true)}
+    className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow transition-colors duration-200"
+  >
+    Adopt Now
+  </button>
+)}
       </div>
        <CatFoodAdopt
                 food={food}

@@ -24,7 +24,7 @@
 //   } = useQuery({
 //     queryKey: ['allfoods', search, sort, page],
 //     queryFn: async () => {
-//       const { data } = await axios.get('http://localhost:3000/allfoods', {
+//       const { data } = await axios.get('https://meow-verse-server-side.vercel.app/allfoods', {
 //         params: { search, sort, page, limit },
 //       });
 //       return data; // { data: [...], total: number }
@@ -172,7 +172,7 @@
 //   } = useQuery({
 //     queryKey: ['allfoods', search, sort, page],
 //     queryFn: async () => {
-//       const { data } = await axios.get('http://localhost:3000/allfoods', {
+//       const { data } = await axios.get('https://meow-verse-server-side.vercel.app/allfoods', {
 //         params: { search, sort, page, limit },
 //       });
 //       return data; // { data: [...], total: number }

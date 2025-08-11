@@ -15,6 +15,7 @@ import {
 } from 'chart.js';
 import useAxiosSecure from '../../../hook/useAxiosSecure';
 import Loaer from '../../../Components/Loaer/Loaer';
+// import useAuth from '../../../hook/useAuth';
 
 ChartJS.register(
   CategoryScale,
@@ -30,11 +31,11 @@ ChartJS.register(
 
 const AdminDashboard = () => {
   const axiosSecure = useAxiosSecure();
-
+// const {user}=useAuth()
   const { data, isLoading } = useQuery({
     queryKey: ['admin-summary'],
     queryFn: async () => {
-      const res = await axiosSecure.get('/admin/summary');
+      const res = await axiosSecure.get(`/admin/summary`);
       return res.data;
     }
   });

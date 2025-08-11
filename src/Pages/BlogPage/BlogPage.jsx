@@ -9,7 +9,7 @@
 //   const { data: blogs = [], isLoading, isError } = useQuery({
 //     queryKey: ['blogs'],
 //     queryFn: async () => {
-//       const res = await axios.get('http://localhost:3000/blog');
+//       const res = await axios.get('https://meow-verse-server-side.vercel.app/blog');
 //       return res.data;
 //     },
 //   });
@@ -57,7 +57,7 @@ const BlogPage = () => {
   const { data: blogs = [], isLoading, isError } = useQuery({
     queryKey: ['blogs'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:3000/blog');
+      const res = await axios.get('https://meow-verse-server-side.vercel.app/blog');
       return res.data;
     },
   });

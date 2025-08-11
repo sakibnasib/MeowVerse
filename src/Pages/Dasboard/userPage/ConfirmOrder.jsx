@@ -66,7 +66,8 @@ if(isLoading) return <Loaer/>
                     </span>
                   </td>
                   <td className="flex gap-2 justify-center">
-                   {/*  */}
+                   {
+order.sellerEmail}
                     
                   </td>
                 </tr>

@@ -14,6 +14,6 @@ export const imageUpload=async imageData =>{
 };
 
 export const saveUserDB= async user =>{
-  const {data}=await axios.post(`http://localhost:3000/user`,user)
+  const {data}=await axios.post(`https://meow-verse-server-side.vercel.app/user`,user)
   return data;
 }

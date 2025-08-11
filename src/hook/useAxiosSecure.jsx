@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 
 const axiosSecure = axios.create({
-    baseURL: `http://localhost:3000`
+    baseURL: `https://meow-verse-server-side.vercel.app`
 });
 
 const useAxiosSecure = () => {
@@ -33,7 +33,7 @@ const useAxiosSecure = () => {
             } else if (status === 401) {
                 logOut()
                     .then(() => {
-                        navigate('/login');
+                        navigate('/auth/login');
                     })
                     .catch(() => {});
             }
