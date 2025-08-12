@@ -50,6 +50,7 @@ const AdminDashboard = () => {
     earnings
   } = data;
 
+  console.log('hiiy',data)
   // Earnings Line Chart Data
   const lineData = {
     labels: ['Today', 'Week', 'Month', 'Year'],

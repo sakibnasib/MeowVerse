@@ -58,7 +58,7 @@ const AllCats = () => {
           {/* Filter Form */}
           <form
             onSubmit={handleSearch}
-            className="w-full max-w-4xl mt-6 bg-white/90 backdrop-blur-md shadow-lg rounded-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="w-full max-w-4xl mt-6  bg-white/90 backdrop-blur-md shadow-lg rounded-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6"
           >
             {/* Search Field */}
             <div>
@@ -77,14 +77,14 @@ const AllCats = () => {
 
             {/* Sort Field */}
             <div className="relative">
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-2">
+              <label className="flex mb-2 items-center gap-2 text-sm font-semibold text-gray-800 ">
                 <FaTags className="w-4 h-4 text-gray-600" />
                 Sort by Price
               </label>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="w-full appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 pr-10 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full appearance-none rounded-md border  border-gray-300 bg-white px-4 py-2 pr-10 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
                 <option value="">Select Sorting</option>
                 <option value="asc">Price: Low to High</option>
